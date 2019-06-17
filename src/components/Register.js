@@ -13,7 +13,7 @@ class Register extends Component {
       email: "",
       firstName: "",
       lastName: "",
-      preferredCurrency: "",
+      preferredCurrency: "USD",
       redirect: false,
       error: ""
     };
@@ -22,6 +22,16 @@ class Register extends Component {
   handleChange = e => {
     this.setState({
       [e.target.placeholder.toLowerCase()]: e.target.value
+      //e accesses info about the event.
+      // Target targets the element that triggered the event(the same input field or button).
+      // Placeholder accesses the placeholder name from the element.
+      // toLowerCase() invoked matches the placeholder to the lowercase variables.
+    });
+  };
+
+  handleDropdownChange = e => {
+    this.setState({
+      [e.target.preferredCurrency]: e.target.value
       //e accesses info about the event.
       // Target targets the element that triggered the event(the same input field or button).
       // Placeholder accesses the placeholder name from the element.
@@ -61,7 +71,8 @@ class Register extends Component {
         <input placeholder="Email" onChange={this.handleChange} />
         <input placeholder="FirstName" onChange={this.handleChange} />
         <input placeholder="LastName" onChange={this.handleChange} />
-        <select type="select" name="PreferredCurrency" placeholder="preferredcurrency" onChange={this.handleChange}>
+        <select required id="currencyDropdown" onChange={this.handleDropdownChange}>
+            <option value="" disabled selected hidden>Select your preferred currency</option>
             <option>USD</option>
             <option>Euros</option>
             <option>Canuck Bucks</option>
