@@ -3,8 +3,8 @@ const bcrypt = require('bcryptjs');
 module.exports = {
     register: (req, res) => {
         //Make sure we have all of our information
-        const {username, password, email, first_name, last_name, preferred_currency} = req.body;
-        if(!username || !password || !email || !first_name || !last_name || !preferred_currency) {
+        const {username, email, password,  firstName, lastName, preferredCurrency} = req.body;
+        if(!username || !password || !email || !firstName || !lastName || !preferredCurrency) {
             res.status(406).json({
                 error: "Please fill in all information"
             });
@@ -19,14 +19,14 @@ module.exports = {
                     bcrypt.hash(password, 10).then(hash => {
                         //put them in the database
                         console.log(hash);
-                        db.addUser(username, hash, email, first_name, last_name, preferred_currency).then(() => {
+                        db.addUser(username, email, hash,  firstName, lastName, preferredCurrency).then(() => {
                             //send a response
                             req.session.user = {
                                 username,
                                 email,
-                                first_name,
-                                last_name,
-                                preferred_currency,
+                                firstName,
+                                lastName,
+                                preferredCurrency,
                                 balance: 0
                             }
                             res.status(200).json(req.session.user);

@@ -13,7 +13,7 @@ class Register extends Component {
       email: "",
       firstName: "",
       lastName: "",
-      preferredCurrency: "USD",
+      preferredCurrency: "",
       redirect: false,
       error: ""
     };
@@ -21,7 +21,7 @@ class Register extends Component {
 
   handleChange = e => {
     this.setState({
-      [e.target.placeholder.toLowerCase()]: e.target.value
+      [e.target.name]: e.target.value
       //e accesses info about the event.
       // Target targets the element that triggered the event(the same input field or button).
       // Placeholder accesses the placeholder name from the element.
@@ -51,6 +51,7 @@ class Register extends Component {
             this.props.setUsername(response.data.username);
             this.props.setBalance(response.data.balance);
             this.setState({redirect: true});
+            console.log(this.state)
       }).catch( error => {
           this.setState({error: error.response.data.error});
       })
@@ -66,12 +67,12 @@ class Register extends Component {
         <h1>Register Today!</h1>
         <h3>{this.state.error}</h3>
         <form>
-        <input placeholder="Username" onChange={this.handleChange} />
-        <input placeholder="Password" onChange={this.handleChange} />
-        <input placeholder="Email" onChange={this.handleChange} />
-        <input placeholder="FirstName" onChange={this.handleChange} />
-        <input placeholder="LastName" onChange={this.handleChange} />
-        <select required id="currencyDropdown" onChange={this.handleDropdownChange}>
+        <input required placeholder="Username" name="username" onChange={this.handleChange} />
+        <input required placeholder="Password" name="password" onChange={this.handleChange} />
+        <input required placeholder="Email" name="email" onChange={this.handleChange} />
+        <input required placeholder="First Name" name="firstName"onChange={this.handleChange} />
+        <input required placeholder="Last Name" name="lastName" onChange={this.handleChange} />
+        <select required id="currencyDropdown" name="preferredCurrency" onChange={this.handleDropdownChange}>
             <option value="" disabled selected hidden>Select your preferred currency</option>
             <option>USD</option>
             <option>Euros</option>
