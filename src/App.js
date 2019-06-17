@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { HashRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import routes from './routes';
+import store from './redux/store';
+import './App.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<Provider store={store}>
+			<HashRouter>
+				<div className='App'>
+					{routes}
+				</div>
+			</HashRouter>
+		</Provider>
+	)
 }
 
 export default App;
+
+/*
+	Make Registration functionality
+	Make Login Functionality
+	Set up Routes
+	Set up Redux
+	Make Dashboard page
+*/
