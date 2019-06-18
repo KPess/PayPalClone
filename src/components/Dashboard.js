@@ -16,9 +16,9 @@ class Dashboard extends React.Component {
     }
 
     render() {
-        if(this.state.redirect === true) {
-            return <Redirect to='/register' />
-        }
+        // if(this.state.redirect === true) {
+        //     return <Redirect to='/register' />
+        // }
         return (
             <div>
                 <h1>Welcome {this.props.username}! Your Balance Is:</h1>

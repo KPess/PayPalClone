@@ -58,11 +58,21 @@ class Register extends Component {
           this.setState({error: error.response.data.error});
       })
   }
+
+  /* There are currently three issues with the submit button.
+     The url changes to have query parameters that should 
+     not be visible, such as the password. Sometimes the error
+     message does not work on the first submission of a duplicate
+     username. Registering a new user does not successfully redirect
+     to the Dashboard page for the user. 
+  */
+
   render() {
     console.log(this.state)
-    if(this.state.redirect === true) {
-        return <Redirect to='/dashboard' />
-    }
+
+    // if(this.state.redirect === true) {
+    //     return <Redirect to='/dashboard' />
+    // }
 
     return (
       <div>
