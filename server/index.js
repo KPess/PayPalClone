@@ -23,7 +23,6 @@ massive(process.env.CONNECTION_STRING).then(db => {
 })
 
 
-
 //auth endpoints
 app.post('/auth/register/user', authController.register);
 app.get('/auth/login/user', authController.login);

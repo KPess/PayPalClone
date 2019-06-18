@@ -27,16 +27,18 @@ class Register extends Component {
       // Placeholder accesses the placeholder name from the element.
       // toLowerCase() invoked matches the placeholder to the lowercase variables.
     });
+    console.log(e.target.value)
   };
 
   handleDropdownChange = e => {
     this.setState({
-      [e.target.preferredCurrency]: e.target.value
+      preferredCurrency: e.target.value
       //e accesses info about the event.
       // Target targets the element that triggered the event(the same input field or button).
       // Placeholder accesses the placeholder name from the element.
       // toLowerCase() invoked matches the placeholder to the lowercase variables.
     });
+    console.log(this.state.preferredCurrency);
   };
 
   handleClick = e => {
@@ -51,13 +53,13 @@ class Register extends Component {
             this.props.setUsername(response.data.username);
             this.props.setBalance(response.data.balance);
             this.setState({redirect: true});
-            console.log(this.state)
+
       }).catch( error => {
           this.setState({error: error.response.data.error});
       })
   }
   render() {
-
+    console.log(this.state)
     if(this.state.redirect === true) {
         return <Redirect to='/dashboard' />
     }
