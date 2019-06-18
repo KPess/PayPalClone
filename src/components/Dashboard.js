@@ -23,6 +23,9 @@ class Dashboard extends React.Component {
             <div>
                 <h1>Welcome {this.props.username}! Your Balance Is:</h1>
                 {this.props.balance}
+                {/* Pulling username and balance from REDUX causes them 
+                to reset when the page is refreshed. These should be pulled 
+                from the session or database. */}
             </div>
         )
     }

@@ -41,7 +41,11 @@ class Register extends Component {
     console.log(this.state.preferredCurrency);
   };
 
-  handleClick = e => {
+  handleClick = (e) => {
+      e.preventDefault()
+      // Prevent default prevents the page from re-rendering 
+      // when the submit button is PermissionRequestedEvent, 
+      // which was breaking stuff.
       Axios.post('/auth/register/user', {
         username: this.state.username,
         password: this.state.password,
@@ -60,19 +64,23 @@ class Register extends Component {
   }
 
   /* There are currently three issues with the submit button.
-     The url changes to have query parameters that should 
-     not be visible, such as the password. Sometimes the error
+     1. The url changes to have query parameters that should 
+     not be visible, such as the password. 
+
+     2.Sometimes the error
      message does not work on the first submission of a duplicate
-     username. Registering a new user does not successfully redirect
+     username. 
+
+     3. Registering a new user does not successfully redirect
      to the Dashboard page for the user. 
   */
 
   render() {
     console.log(this.state)
 
-    // if(this.state.redirect === true) {
-    //     return <Redirect to='/dashboard' />
-    // }
+    if(this.state.redirect === true) {
+        return <Redirect to='/dashboard' />
+    }
 
     return (
       <div>

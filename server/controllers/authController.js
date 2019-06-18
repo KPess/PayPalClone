@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
     register: (req, res) => {
+        console.log(req.body)
         //Make sure we have all of our information
         const {username, email, password,  firstName, lastName, preferredCurrency} = req.body;
         if(!username || !password || !email || !firstName || !lastName || !preferredCurrency) {
@@ -29,6 +30,7 @@ module.exports = {
                                 preferredCurrency,
                                 balance: 0
                             }
+                            console.log(req.session.user)
                             res.status(200).json(req.session.user);
                         })
                     })

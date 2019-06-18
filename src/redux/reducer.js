@@ -33,6 +33,7 @@ export function setBalance(balance) {
 
 //reducer
 export default function reducer(state=initialState, action) {
+    console.log(state)
     switch(action.type) {
         case SET_LOGIN_FIRST:
             return {
@@ -40,19 +41,19 @@ export default function reducer(state=initialState, action) {
                 loginFirst: true
             }
         case SET_USERNAME:
-            console.log({
-                ...state,
-                username: action.payload
-            })
+            // {
+            //     ...state,
+            //     username: action.payload
+            // }
             return {
                 ...state,
                 username: action.payload
             }
         case SET_BALANCE:
-            console.log({
-                ...state,
-                balance: action.payload
-            })
+            // {
+            //     ...state,
+            //     balance: action.payload
+            // }
             return {
                 ...state,
                 balance: action.payload
