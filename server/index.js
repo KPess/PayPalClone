@@ -26,7 +26,9 @@ massive(process.env.CONNECTION_STRING).then(db => {
 //auth endpoints
 app.post('/auth/register/user', authController.register);
 app.post('/auth/login/user', authController.login);
-// app.delete('/auth/logout', authController.logout);
+app.post('/auth/logout', authController.logout);
+
+//admin endpoints
 
 
 

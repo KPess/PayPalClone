@@ -24,7 +24,7 @@ export class Login extends Component {
       // Placeholder accesses the placeholder name from the element.
       // toLowerCase() invoked matches the placeholder to the lowercase variables.
     });
-    console.log(e.target.value)
+    // console.log(e.target.value)
   };
 
   handleClick = (e) => {
@@ -49,7 +49,6 @@ export class Login extends Component {
 
 
   render() {
-    console.log(this.state)
 
     if(this.state.redirect === true) {
         return <Redirect to='/dashboard' />

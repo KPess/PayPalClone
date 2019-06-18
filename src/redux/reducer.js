@@ -2,7 +2,10 @@
 const initialState = {
     username: '',
     balance: null,
-    loginFirst: false
+    loginFirst: false,
+    loggedIn: false,
+    isAdmin: null,
+    userid: ''
 }
 
 //constants
@@ -33,7 +36,6 @@ export function setBalance(balance) {
 
 //reducer
 export default function reducer(state=initialState, action) {
-    console.log(state)
     switch(action.type) {
         case SET_LOGIN_FIRST:
             return {

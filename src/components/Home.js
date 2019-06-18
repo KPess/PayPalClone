@@ -4,8 +4,9 @@ import HeaderNav from './Nav'
 
 function Home() {
 	return (
-		<div className='Login'>
+		<div className='Home'>
 			<HeaderNav/>
+            <h1> Welcome to PayPal</h1>
 		</div>
 	)
 }

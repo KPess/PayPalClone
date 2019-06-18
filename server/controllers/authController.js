@@ -102,7 +102,6 @@ module.exports = {
   logout: (req, res) => {
     //Destroy session
     req.session.destroy();
-    return res.sendStatus(200);
-    //Route to home page
+
   }
 };

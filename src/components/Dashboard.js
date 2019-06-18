@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { setLoginFirst } from '../redux/reducer';
 import HeaderNav from './Nav'
+import Axios from 'axios';
 class Dashboard extends React.Component {
     state = {
         redirect: false
@@ -15,6 +16,15 @@ class Dashboard extends React.Component {
         }
     }
 
+    handleLogout = (e) => {
+        //Call the logout path to activate authController.logout
+        Axios.post('/auth/logout')
+        //Redirect user to home
+        this.props.history.push('/')
+    }
+
+
+    
     render() {
         if(this.state.redirect === true) {
             return <Redirect to='/register' />
@@ -28,6 +38,7 @@ class Dashboard extends React.Component {
                 {/* Pulling username and balance from REDUX causes them 
                 to reset when the page is refreshed. These should be pulled 
                 from the session or database. */}
+                <button onClick={this.handleLogout}>Log Out</button>
             </div>
         )
     }
