@@ -10,7 +10,7 @@ app.use(express.json()); //app.use is for middleware
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    saveUninitialized: false,
+    saveUninitialized: true,
     resave: false,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7
@@ -26,7 +26,7 @@ massive(process.env.CONNECTION_STRING).then(db => {
 //auth endpoints
 app.post('/auth/register/user', authController.register);
 app.post('/auth/login/user', authController.login);
-app.post('/auth/logout', authController.logout);
+app.get('/auth/logout', authController.logout);
 
 //admin endpoints
 

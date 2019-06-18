@@ -1,14 +1,23 @@
 import React from 'react';
 import HeaderNav from './Nav'
+import {connect} from 'react-redux'
 
-
-function Home() {
+class Home extends React.Component {
+	render() {
 	return (
 		<div className='Home'>
 			<HeaderNav/>
             <h1> Welcome to PayPal</h1>
+			<h2>{this.props.username}</h2>
+
 		</div>
-	)
+	)}
 }
 
-export default Home;
+
+function mapStateToProps(reduxState) {
+	const {username} = reduxState
+	return {username}
+};
+
+export default connect(mapStateToProps)(Home);

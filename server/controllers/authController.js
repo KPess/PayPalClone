@@ -88,7 +88,7 @@ module.exports = {
                 id: user[0].id,
                 balance: user[0].balance
               };
-              console.log(req.session.user);
+              // console.log(req.session.user);
               res.status(200).json(req.session.user);
             });
           }
@@ -102,6 +102,7 @@ module.exports = {
   logout: (req, res) => {
     //Destroy session
     req.session.destroy();
+    // console.log(req.session)
 
   }
 };
