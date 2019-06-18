@@ -6,6 +6,11 @@ CREATE TABLE paypal_users (
   first_name VARCHAR(100) NOT NULL,
   last_name VARCHAR(100) NOT NULL,
   preferred_currency VARCHAR(100) NOT NULL,
-  balance  DECIMAL NOT NULL
+  balance  DECIMAL NOT NULL,
+  isAdmin BOOLEAN
   )
   
+  CREATE TABLE transactions (
+    id SERIAL PRIMARY KEY,
+    
+  )

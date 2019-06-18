@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { setLoginFirst } from '../redux/reducer';
-
+import HeaderNav from './Nav'
 class Dashboard extends React.Component {
     state = {
         redirect: false
@@ -16,11 +16,13 @@ class Dashboard extends React.Component {
     }
 
     render() {
-        // if(this.state.redirect === true) {
-        //     return <Redirect to='/register' />
-        // }
+        if(this.state.redirect === true) {
+            return <Redirect to='/register' />
+        }
         return (
+            
             <div>
+                <HeaderNav/>
                 <h1>Welcome {this.props.username}! </h1>
                 <h2>Your balance is: ${this.props.balance}</h2>
                 {/* Pulling username and balance from REDUX causes them 

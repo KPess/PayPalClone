@@ -6,11 +6,12 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
+  Button,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
+  import {Link} from 'react-router-dom'
 
 export default class HeaderNav extends React.Component {
   constructor(props) {
@@ -18,7 +19,11 @@ export default class HeaderNav extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      onRegister: false,
+      onLogin: false,
+      onDashboard: false,
+      
     };
   }
   toggle() {
@@ -35,10 +40,10 @@ export default class HeaderNav extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <Link  to="/register"> <Button>Sign Up</Button></Link>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <Link to="/login"><Button>Log In</Button></Link>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
