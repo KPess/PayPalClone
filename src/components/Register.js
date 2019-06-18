@@ -3,6 +3,7 @@ import Axios from "axios";
 import { Redirect } from 'react-router-dom';
 import { setBalance, setUsername } from '../redux/reducer';
 import {connect} from 'react-redux'
+import HeaderNav from './Nav'
 
 class Register extends Component {
   constructor() {
@@ -84,6 +85,7 @@ class Register extends Component {
 
     return (
       <div>
+        <HeaderNav/>
         <h1>Register Today!</h1>
         <h3>{this.state.error}</h3>
         <form>
