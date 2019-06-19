@@ -1,17 +1,49 @@
 import React from 'react';
-import routes from './routes';
-import store from './redux/store';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { setLoginFirst } from '../redux/reducer';
+import HeaderNav from './Nav'
+import Axios from 'axios';
+class Dashboard extends React.Component {
+    state = {
+        redirect: false
+    }
 
-function App() {
-	return (
-		<Provider store={store}>
-			<HashRouter>
-				<div className='App'>
-					{routes}
-				</div>
-			</HashRouter>
-		</Provider>
-	)
+    componentDidMount() {
+        if(!this.props.username) {
+            this.setState({redirect: true})
+            this.props.setLoginFirst();
+        }
+    }
+
+    handleLogout = (e) => {
+        //Call the logout path to activate authController.logout
+        Axios.get('/auth/logout')
+        //Redirect user to home
+        this.props.history.push('/')
+    }
+
+
+    
+    render() {
+        if(this.state.redirect === true) {
+            return <Redirect to='/register' />
+        }
+        return (
+            
+            <div>
+                <HeaderNav/>
+                <h1>Welcome {this.props.username}! </h1>
+                <h2>Transactions: </h2>
+                {/* ADMIN ONLY - MAP transactions joined to user info. */}
+                <button onClick={this.handleLogout}>Log Out</button>
+            </div>
+        )
+    }
 }
 
-export default App;
+const mapStateToProps = reduxState => {
+    return reduxState;
+};
+
+export default connect(mapStateToProps, {setLoginFirst})(Dashboard);

@@ -8,7 +8,7 @@ class Home extends React.Component {
 		<div className='Home'>
 			<HeaderNav/>
             <h1> Welcome to PayPal</h1>
-			<h2>{this.props.username}</h2>
+			<h2>You are currently logged in as: {this.props.username}</h2>
 
 		</div>
 	)}

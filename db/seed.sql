@@ -26,3 +26,18 @@ CREATE TABLE paypal_users (
     currency_unit VARCHAR(50),
     currency_symbol VARCHAR(10)
   )
+
+INSERT INTO currencies (currency_name, currency_unit, currency_symbol)
+VALUES ('USD', 'dollars', '$')
+
+INSERT INTO currencies (currency_name, currency_unit, currency_symbol)
+VALUES ('Bitcoin', 'bitcoins', '₿')
+
+INSERT INTO currencies (currency_name, currency_unit, currency_symbol)
+VALUES ('Monero', 'moneroj', 'ɱ')
+
+INSERT INTO currencies (currency_name, currency_unit, currency_symbol)
+VALUES ('CAD', 'Canadian dollars', 'CAD')
+
+INSERT INTO currencies (currency_name, currency_unit, currency_symbol)
+VALUES ('Euro', 'euros', '€')

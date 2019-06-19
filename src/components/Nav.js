@@ -41,6 +41,9 @@ export default class HeaderNav extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
+                <Link to="/dashboard"><Button>Dashboard</Button></Link>
+              </NavItem>
+              <NavItem>
                 <Link  to="/register"> <Button>Sign Up</Button></Link>
               </NavItem>
               <NavItem>
