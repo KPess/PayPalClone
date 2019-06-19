@@ -33,7 +33,7 @@ module.exports = {
           //Hash the password
           bcrypt.hash(password, 10).then(hash => {
             //put them in the database
-            console.log(hash);
+            // console.log(hash);
             db.addUser(
               username,
               email,

@@ -11,6 +11,18 @@ CREATE TABLE paypal_users (
   )
   
   CREATE TABLE transactions (
-    id SERIAL PRIMARY KEY,
-    
+    trans_id SERIAL PRIMARY KEY,
+    trans_currency_id INTEGER,
+    sender_id INTEGER,
+    recipient_id INTEGER,
+    amount DECIMAL,
+    trans_date DATE,
+    FOREIGN KEY (sender_id) REFERENCES paypal_users(id)
+  )
+
+  CREATE TABLE currencies (
+    currency_id SERIAL PRIMARY KEY,
+    currency_name VARCHAR(50),
+    currency_unit VARCHAR(50),
+    currency_symbol VARCHAR(10)
   )

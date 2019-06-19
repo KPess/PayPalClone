@@ -34,8 +34,9 @@ class Dashboard extends React.Component {
             <div>
                 <HeaderNav/>
                 <h1>Welcome {this.props.username}! </h1>
-                <h2>Your balance is: ${this.props.balance}</h2>
-                {/* Pulling username and balance from REDUX causes them 
+                <h2>Your balance is: {this.props.preferredCurrency}$‎{this.props.balance} or ɱ{this.props.balance} or €{this.props.balance} or CAD{this.props.balance}</h2>
+                {/* REPLACE $ WITH SYMBOL OF PREFERRED CURRENCY
+                Pulling username and balance from REDUX causes them 
                 to reset when the page is refreshed. These should be pulled 
                 from the session or database. */}
                 <button onClick={this.handleLogout}>Log Out</button>
