@@ -31,7 +31,7 @@ app.post('/auth/login/user', authController.login);
 app.get('/auth/logout', authController.logout);
 
 //admin endpoints
-app.get('/transactions', adminController.getTransactions)
+app.get('/transactions', adminController.getAllTransactions)
 app.post('/transactions', adminController.addTransaction)
 app.delete('/transactions/:id', adminController.deleteTransaction)
 app.get('currencies', adminController.getCurrencies)
@@ -41,9 +41,9 @@ app.delete('/currencies/:id', adminController.deleteCurrency)
 // app.put('/transactions/:id', adminController.updateTransaction)
 
 //user endpoints
-app.get('/transactions', userController.getTransactions)
+app.get('/transactions', userController.getUserTransactions)
 app.post('/transactions', userController.addTransaction)
-app.update('/user/:id', userController.updateEmail)
+app.put('/user/:id', userController.updateEmail)
 app.delete('/user/:id', userController.deleteAccount)
 
 app.listen(5050, () => console.log(`Listening on Port 5050`));

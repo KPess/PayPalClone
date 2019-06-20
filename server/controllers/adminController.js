@@ -1,5 +1,5 @@
 module.exports = {
-    getTransactions: (req, res) =>{
+    getAllTransactions: (req, res) =>{
 
     },
     addTransaction: (req, res) =>{
