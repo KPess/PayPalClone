@@ -1,22 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { setLoginFirst, resetReduxState } from '../redux/reducer';
+import {  resetReduxState, getTransactions } from '../redux/reducer';
 import HeaderNav from './Nav'
 import Axios from 'axios';
+import AllTransTable from './AllTransTable'
+
 class Dashboard extends React.Component {
     state = {
         redirect: false,
-        user: []
+        user: [],
+        transactions: []
     }
 
     componentDidMount() {
         if(!this.props.user.username) {
             this.setState({redirect: true})
-            
-            // this.props.setLoginFirst();
         }
-        this.setState({user: this.props.user})
+        if(this.props.user.isadmin) {
+            this.getAllTransactions()
+        }
+        if(!this.props.user.isadmin) {
+            this.getUserTransactions()
+        }
+        // this.setState({user: this.props.user})
+        // this.setState({transactions: this.props.transactions})
 
     }
 
@@ -28,15 +36,25 @@ class Dashboard extends React.Component {
         this.props.resetReduxState();
     }
 
+    getAllTransactions = (e) => {
+        Axios.get('/transactions')
+        .then( response => {
+            this.props.getTransactions(response.data)
+        })
 
+    }
+
+    getUserTransactions = (e) => {
+        Axios.get('/user/transactions')
+    }
     
     render() {
         if(this.state.redirect === true) {
             return <Redirect to='/register' />
         }
-        const { user } = this.props
-
-        console.log(user)
+        const { user, transactions } = this.props
+        console.log(transactions)
+        // console.log(user)
         return (
             <div>
                 <HeaderNav/>
@@ -51,11 +69,8 @@ class Dashboard extends React.Component {
                 - did logout work? SOLVED
 
                 2. Unable to accurately display whether 
-                the current user is admin - PENDING
+                the current user is admin - SOLVED
 
-                    Ideas - Pull admin status from DB
-                    and store in redux state for all 
-                    components at login.
 
                 3. REPLACE $ WITH SYMBOL OF CURRENT USER'S 
                 PREFERRED CURRENCY FROM DB - PENDING
@@ -65,6 +80,7 @@ class Dashboard extends React.Component {
                 from the session cookie or database. PENDING
                 */}
                 <button onClick={this.handleLogout}>Log Out</button>
+                <AllTransTable/>
             </div>
           
         )
@@ -72,8 +88,8 @@ class Dashboard extends React.Component {
 }
 
 const mapStateToProps = reduxState => {
-    const { user, isadmin } = reduxState;
-    return {user, isadmin}
+    const { user, isadmin, transactions} = reduxState;
+    return {user, isadmin, transactions}
 };
 
-export default connect(mapStateToProps, {setLoginFirst, resetReduxState})(Dashboard);
+export default connect(mapStateToProps, { resetReduxState, getTransactions})(Dashboard);

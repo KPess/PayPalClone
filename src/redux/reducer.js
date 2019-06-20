@@ -13,9 +13,9 @@ const initialState = {
 //constants
 const SET_USERNAME = "SET_USERNAME";
 const SET_BALANCE = "SET_BALANCE";
-const SET_LOGIN_FIRST = "SET_LOGIN_FIRST"
 const SET_USER = "SET_USER"
-const SET_TRANSACTIONS = "SET_TRANSACTIONS"
+const GET_TRANSACTIONS = "GET_TRANSACTIONS"
+const GET_USER_TRANSACTIONS = "GET_USER_TRANSACTIONS"
 const SET_INITIALSTATE = "SET_INITIALSTATE"
 
 //action creators
@@ -24,12 +24,6 @@ export function resetReduxState() {
         type: SET_INITIALSTATE,
         payload: initialState
 
-    }
-}
-export function setLoginFirst() {
-    return {
-        type: SET_LOGIN_FIRST,
-        payload: true
     }
 }
 export function setUsername(username) {
@@ -44,9 +38,15 @@ export function setUser(user) {
         payload: user
     }
 }
-export function setTransactions(transactions) {
+export function getTransactions(transactions) {
     return {
-        type: SET_USER,
+        type: GET_TRANSACTIONS,
+        payload: transactions
+    }
+}
+export function getUserTransactions(transactions) {
+    return {
+        type: GET_USER_TRANSACTIONS,
         payload: transactions
     }
 }
@@ -64,18 +64,13 @@ export default function reducer(state=initialState, action) {
             return {
                 username: '',
                 balance: null,
-                loginFirst: false,
                 loggedIn: false,
                 isAdmin: null,
                 userid: '',
                 user: [],
                 transactions: []
             }
-        case SET_LOGIN_FIRST:
-            return {
-                ...state,
-                loginFirst: true
-            }
+
         case SET_USERNAME:
             // {
             //     ...state,
@@ -99,7 +94,12 @@ export default function reducer(state=initialState, action) {
                 ...state,
                 user: action.payload
             }
-        case SET_TRANSACTIONS:
+        case GET_TRANSACTIONS:
+            return {
+                ...state,
+                transactions: action.payload
+            }
+        case GET_USER_TRANSACTIONS:
             return {
                 ...state,
                 transactions: action.payload

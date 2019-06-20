@@ -1,6 +1,8 @@
 module.exports = {
-    getAllTransactions: (req, res) =>{
-
+    getAllTransactions: async (req, res) =>{
+        const db = req.app.get('db')
+        const allTransactions = await db.getAllTransactions();
+        return res.status(200).send(allTransactions)
     },
     addTransaction: (req, res) =>{
 

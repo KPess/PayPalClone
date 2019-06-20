@@ -16,6 +16,7 @@ class Dashboard extends React.Component {
         }
     }
 
+    
     handleLogout = (e) => {
         //Call the logout path to activate authController.logout
         Axios.get('/auth/logout')
