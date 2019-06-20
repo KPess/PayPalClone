@@ -14,7 +14,9 @@ class Home extends React.Component {
 			<h2>You are currently logged in as: {user.username}</h2>
 			):false
 			}
-
+			{!user.username ? (
+				<h2>Please sign up or log in to start</h2>
+			):false}
 		</div>
 	)}
 }
