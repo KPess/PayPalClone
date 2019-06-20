@@ -1,8 +1,19 @@
 import React from "react";
 import HeaderNav from "./Nav";
-import { connect } from "react-redux";
+import { connect } from "react-redux"
+import {resetReduxState} from '../redux/reducer'
+import Axios from 'axios'
 
 class Home extends React.Component {
+
+  handleLogout = (e) => {
+    //Call the logout path to activate authController.logout
+    Axios.get('/auth/logout');
+    //Redirect user to home
+    this.props.history.push('/');
+    this.props.resetReduxState();
+}
+
   render() {
     const { user } = this.props;
     return (
@@ -32,4 +43,4 @@ function mapStateToProps(reduxState) {
   return { user };
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, {resetReduxState})(Home);
