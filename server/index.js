@@ -34,7 +34,7 @@ app.get('/auth/logout', authController.logout);
 app.get('/transactions', adminController.getAllTransactions)
 app.post('/transactions', adminController.addTransaction)
 app.delete('/transactions/:id', adminController.deleteTransaction)
-app.get('currencies', adminController.getCurrencies)
+app.get('/currencies', adminController.getCurrencies)
 app.post('/currencies', adminController.addCurrency)
 app.delete('/currencies/:id', adminController.deleteCurrency)
 // app.put('/currencies/:id', adminController.updateCurrency)

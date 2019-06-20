@@ -6,14 +6,18 @@ import HeaderNav from './Nav'
 import Axios from 'axios';
 class Dashboard extends React.Component {
     state = {
-        redirect: false
+        redirect: false,
+        user: []
     }
 
     componentDidMount() {
-        if(!this.props.username) {
+        if(!this.props.user.username) {
             this.setState({redirect: true})
+            
             // this.props.setLoginFirst();
         }
+        this.setState({user: this.props.user})
+
     }
 
     handleLogout = (e) => {
@@ -30,14 +34,18 @@ class Dashboard extends React.Component {
         if(this.state.redirect === true) {
             return <Redirect to='/register' />
         }
-        const { isAdmin } = this.props
-        console.log({isAdmin})
+        const { user } = this.props
+
+        console.log(user)
         return (
             <div>
                 <HeaderNav/>
-                <h1>Welcome {this.props.username}! </h1>
-                <h2>Your balance is: {this.props.preferredCurrency}$‎{this.props.balance} or ɱ{this.props.balance} or €{this.props.balance} or CAD{this.props.balance}</h2>
-                <h3>Are you an admin? {this.props.isAdmin}</h3>
+                <h1>Welcome {user.username}! </h1>
+                <h2>Your balance is: {user.preferredCurrency}$‎{user.balance} or ɱ{user.balance} or €{user.balance} or CAD{user.balance}</h2>
+                {user.isadmin  ? (
+                <h3>You are an admin.</h3>
+                ):false}
+
                 {/* 
                 1. After logout the home page still shows user's name 
                 - did logout work? SOLVED
@@ -64,7 +72,8 @@ class Dashboard extends React.Component {
 }
 
 const mapStateToProps = reduxState => {
-    return reduxState;
+    const { user, isadmin } = reduxState;
+    return {user, isadmin}
 };
 
 export default connect(mapStateToProps, {setLoginFirst, resetReduxState})(Dashboard);

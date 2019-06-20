@@ -4,15 +4,16 @@ const initialState = {
     balance: null,
     loginFirst: false,
     loggedIn: false,
-    isAdmin: false,
-    userid: ''
+    isadmin: null,
+    userid: '',
+    user: []
 }
 
 //constants
 const SET_USERNAME = "SET_USERNAME";
 const SET_BALANCE = "SET_BALANCE";
 const SET_LOGIN_FIRST = "SET_LOGIN_FIRST"
-const SET_ADMIN = "SET_ADMIN"
+const SET_USER = "SET_USER"
 const SET_INITIALSTATE = "SET_INITIALSTATE"
 
 //action creators
@@ -35,10 +36,10 @@ export function setUsername(username) {
         payload: username
     }
 }
-export function setAdmin() {
+export function setUser(user) {
     return {
-        type: SET_ADMIN,
-        payload: true
+        type: SET_USER,
+        payload: user
     }
 }
 export function setBalance(balance) {
@@ -57,8 +58,9 @@ export default function reducer(state=initialState, action) {
                 balance: null,
                 loginFirst: false,
                 loggedIn: false,
-                isAdmin: false,
-                userid: ''
+                isAdmin: null,
+                userid: '',
+                user: []
             }
         case SET_LOGIN_FIRST:
             return {
@@ -83,10 +85,10 @@ export default function reducer(state=initialState, action) {
                 ...state,
                 balance: action.payload
             }
-        case SET_ADMIN:
+        case SET_USER:
             return {
                 ...state,
-                isAdmin: true
+                user: action.payload
             }
         default: return state;
     }

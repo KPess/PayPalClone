@@ -41,3 +41,7 @@ VALUES ('CAD', 'Canadian dollars', 'CAD')
 
 INSERT INTO currencies (currency_name, currency_unit, currency_symbol)
 VALUES ('Euro', 'euros', '€')
+
+UPDATE paypal_users
+SET isadmin = true
+WHERE id = 18

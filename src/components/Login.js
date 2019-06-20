@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import { Redirect } from 'react-router-dom';
-import { setUsername, setBalance, setAdmin } from '../redux/reducer';
+import { setUsername, setBalance, setUser } from '../redux/reducer';
 import {connect} from 'react-redux'
 import HeaderNav from './Nav'
 
@@ -39,7 +39,7 @@ export class Login extends Component {
     }).then( response => {
           this.props.setUsername(response.data.username);
           this.props.setBalance(response.data.balance);
-          // this.props.setAdmin(response.data.isAdmin);
+          this.props.setUser(response.data);
           this.setState({redirect: true});
 
     }).catch( error => {
@@ -79,4 +79,4 @@ const mapStateToProps = state => { //Takes in Redux state
     }
 }
 
-export default connect(mapStateToProps, {setUsername, setBalance, setAdmin})(Login); //connect invoked returns a function, and then passes in register
+export default connect(mapStateToProps, {setUsername, setBalance, setUser})(Login); //connect invoked returns a function, and then passes in register

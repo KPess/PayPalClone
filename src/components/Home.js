@@ -4,11 +4,16 @@ import {connect} from 'react-redux'
 
 class Home extends React.Component {
 	render() {
+
+	const {user} = this.props
 	return (
 		<div className='Home'>
 			<HeaderNav/>
             <h1> Welcome to PayPal</h1>
-			<h2>You are currently logged in as: {this.props.username}</h2>
+			{user.username ? (
+			<h2>You are currently logged in as: {user.username}</h2>
+			):false
+			}
 
 		</div>
 	)}
@@ -16,8 +21,8 @@ class Home extends React.Component {
 
 
 function mapStateToProps(reduxState) {
-	const {username} = reduxState
-	return {username}
+	const {user} = reduxState
+	return {user}
 };
 
 export default connect(mapStateToProps)(Home);
