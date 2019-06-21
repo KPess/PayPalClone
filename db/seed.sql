@@ -27,6 +27,9 @@ CREATE TABLE paypal_users (
     currency_symbol VARCHAR(10)
   )
 
+INSERT INTO transactions (trans_currency_id, sender_id, recipient_id, amount, trans_date)
+VALUES (2, 18, 2, 500.00, now())
+
 INSERT INTO currencies (currency_name, currency_unit, currency_symbol)
 VALUES ('USD', 'dollars', '$')
 
