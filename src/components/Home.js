@@ -2,6 +2,7 @@ import React from "react";
 import HeaderNav from "./Nav";
 import { connect } from "react-redux"
 import {resetReduxState} from '../redux/reducer'
+import {Button} from 'reactstrap'
 import Axios from 'axios'
 
 class Home extends React.Component {
@@ -24,7 +25,7 @@ class Home extends React.Component {
           {user.username ? (
             <div>
               <h2>You are currently logged in as: {user.username}</h2>
-              <button onClick={this.handleLogout}>Log Out</button>
+              <Button className="logout-button" onClick={this.handleLogout}>Log Out</Button>
             </div>
           ) : (
             false

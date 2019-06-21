@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import {  resetReduxState, getTransactions } from '../redux/reducer';
+import {Button} from 'reactstrap'
 import HeaderNav from './Nav'
 import Axios from 'axios';
 import AllTransTable from './AllTransTable'
@@ -79,7 +80,7 @@ class Dashboard extends React.Component {
                 to reset when the page is refreshed. These should be pulled 
                 from the session cookie or database. PENDING
                 */}
-                <button onClick={this.handleLogout}>Log Out</button>
+                <Button className="logout-button" onClick={this.handleLogout}>Log Out</Button>
                 <AllTransTable/>
             </div>
           

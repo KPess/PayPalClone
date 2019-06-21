@@ -3,6 +3,7 @@ import Axios from "axios";
 import { Redirect } from 'react-router-dom';
 import { setBalance, setUsername } from '../redux/reducer';
 import {connect} from 'react-redux'
+import {Button} from 'reactstrap'
 import HeaderNav from './Nav'
 
 class Register extends Component {
@@ -103,7 +104,7 @@ class Register extends Component {
             <option>Euros</option>
             <option>Canuck Bucks</option>
         </select>
-        <button onClick={this.handleClick}>Submit</button>
+        <Button onClick={this.handleClick}>Submit</Button>
         </form>
       </div>
     );

@@ -3,6 +3,7 @@ import Axios from "axios";
 import { Redirect } from 'react-router-dom';
 import { setUsername, setBalance, setUser, getTransactions } from '../redux/reducer';
 import {connect} from 'react-redux'
+import {Button} from 'reactstrap'
 import HeaderNav from './Nav'
 
 export class Login extends Component {
@@ -66,7 +67,7 @@ export class Login extends Component {
         <form>
         <input required placeholder="Username" name="username" onChange={this.handleChange} />
         <input required placeholder="Password" name="password" onChange={this.handleChange} />
-        <button onClick={this.handleClick}>Submit</button>
+        <Button onClick={this.handleClick}>Submit</Button>
         </form>
       </div>
     );
