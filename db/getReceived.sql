@@ -7,4 +7,4 @@ t.recipient_id,
 t.amount
 FROM transactions t 
 INNER JOIN paypal_users p ON t.sender_id = p.id
-WHERE t.recipient_id = 18
+WHERE t.recipient_id = $1

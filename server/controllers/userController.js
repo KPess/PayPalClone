@@ -6,12 +6,12 @@ module.exports = {
     },
     getSentTransactions: async (req, res) =>{
         const db = req.app.get('db')
-        const sentTransactions = await db.getSent();
+        const sentTransactions = await db.getSent(req.session.user.id);
         return res.status(200).send(sentTransactions)
     },
     getRcvdTransactions: async (req, res) =>{
         const db = req.app.get('db')
-        const rcvdTransactions = await db.getReceived();
+        const rcvdTransactions = await db.getReceived(req.session.user.id);
         return res.status(200).send(rcvdTransactions)
     },
     addTransaction: (req, res) =>{

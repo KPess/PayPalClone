@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 class UserSentTable extends React.Component {
   render(props) {
-    console.log(this.props.sentTransactions);
+    // console.log(this.props.sentTransactions);
     return (
       <div>
         <h1>Sent Transactions</h1>

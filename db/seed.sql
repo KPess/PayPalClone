@@ -16,7 +16,7 @@ CREATE TABLE paypal_users (
     sender_id INTEGER,
     recipient_id INTEGER,
     amount DECIMAL,
-    trans_date DATE,
+    trans_date DATETIME,
     FOREIGN KEY (sender_id) REFERENCES paypal_users(id)
   )
 

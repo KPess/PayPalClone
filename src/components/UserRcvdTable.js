@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 class UserRcvdTable extends React.Component {
   render(props) {
-    console.log(this.props.rcvdTransactions);
+    // console.log(this.props.rcvdTransactions);
     return (
       <div>
         <h1>Received Transactions</h1>

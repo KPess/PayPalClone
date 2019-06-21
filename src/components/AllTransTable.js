@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 class AllTransTable extends React.Component {
   render(props) {
-    console.log(this.props.transactions);
+    // console.log(this.props.transactions);
     return (
       <div>
         <h1>All Transactions</h1>
