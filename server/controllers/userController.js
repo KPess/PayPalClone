@@ -4,6 +4,16 @@ module.exports = {
         const userTransactions = await db.getUserTransactions();
         return res.status(200).send(userTransactions)
     },
+    getSentTransactions: async (req, res) =>{
+        const db = req.app.get('db')
+        const sentTransactions = await db.getSent();
+        return res.status(200).send(sentTransactions)
+    },
+    getRcvdTransactions: async (req, res) =>{
+        const db = req.app.get('db')
+        const rcvdTransactions = await db.getReceived();
+        return res.status(200).send(rcvdTransactions)
+    },
     addTransaction: (req, res) =>{
 
     },

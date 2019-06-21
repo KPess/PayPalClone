@@ -1,17 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import {  resetReduxState, getTransactions } from '../redux/reducer';
+import {  resetReduxState, getTransactions, getRcvdTransactions, getSentTransactions } from '../redux/reducer';
 import {Button} from 'reactstrap'
 import HeaderNav from './Nav'
 import Axios from 'axios';
 import AllTransTable from './AllTransTable'
+import UserRcvdTable from './UserRcvdTable'
+import UserSentTable from './UserSentTable'
+
 
 class Dashboard extends React.Component {
     state = {
         redirect: false,
         user: [],
-        transactions: []
+        transactions: [],
+        rcvdTransactions: [],
+        sentTransactions: []
     }
 
     componentDidMount() {
@@ -21,8 +26,11 @@ class Dashboard extends React.Component {
         if(this.props.user.isadmin) {
             this.getAllTransactions()
         }
-        if(!this.props.user.isadmin) {
-            this.getUserTransactions()
+        if(this.props.user.isadmin) {
+            this.getSentTransactions()
+        }
+        if(this.props.user.isadmin) {
+            this.getRcvdTransactions()
         }
         // this.setState({user: this.props.user})
         // this.setState({transactions: this.props.transactions})
@@ -44,11 +52,21 @@ class Dashboard extends React.Component {
         })
 
     }
+    getRcvdTransactions = (e) => {
+        Axios.get('/user/rcvdtransactions')
+        .then( response => {
+            this.props.getRcvdTransactions(response.data)
+        })
 
-    getUserTransactions = (e) => {
-        Axios.get('/user/transactions')
     }
-    
+    getSentTransactions = (e) => {
+        Axios.get('/user/senttransactions')
+        .then( response => {
+            this.props.getSentTransactions(response.data)
+        })
+
+    }
+
     render() {
         if(this.state.redirect === true) {
             return <Redirect to='/register' />
@@ -82,6 +100,8 @@ class Dashboard extends React.Component {
                 */}
                 <Button className="logout-button" onClick={this.handleLogout}>Log Out</Button>
                 <AllTransTable/>
+                <UserRcvdTable/>
+                <UserSentTable/>
             </div>
           
         )
@@ -89,8 +109,8 @@ class Dashboard extends React.Component {
 }
 
 const mapStateToProps = reduxState => {
-    const { user, isadmin, transactions} = reduxState;
-    return {user, isadmin, transactions}
+    const { user, isadmin, transactions, sentTransactions, rcvdTransactions} = reduxState;
+    return {user, isadmin, transactions, sentTransactions, rcvdTransactions}
 };
 
-export default connect(mapStateToProps, { resetReduxState, getTransactions})(Dashboard);
+export default connect(mapStateToProps, { resetReduxState, getTransactions, getRcvdTransactions, getSentTransactions})(Dashboard);

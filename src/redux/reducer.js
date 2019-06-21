@@ -7,7 +7,9 @@ const initialState = {
     isadmin: null,
     userid: '',
     user: [],
-    transactions: []
+    transactions: [],
+    rcvdTransactions: [],
+    sentTransactions: [],
 }
 
 //constants
@@ -15,7 +17,8 @@ const SET_USERNAME = "SET_USERNAME";
 const SET_BALANCE = "SET_BALANCE";
 const SET_USER = "SET_USER"
 const GET_TRANSACTIONS = "GET_TRANSACTIONS"
-const GET_USER_TRANSACTIONS = "GET_USER_TRANSACTIONS"
+const GET_SENT_TRANSACTIONS = "GET_SENT_TRANSACTIONS"
+const GET_RCVD_TRANSACTIONS = "GET_RCVD_TRANSACTIONS"
 const SET_INITIALSTATE = "SET_INITIALSTATE"
 
 //action creators
@@ -44,10 +47,16 @@ export function getTransactions(transactions) {
         payload: transactions
     }
 }
-export function getUserTransactions(transactions) {
+export function getSentTransactions(sentTransactions) {
     return {
-        type: GET_USER_TRANSACTIONS,
-        payload: transactions
+        type: GET_SENT_TRANSACTIONS,
+        payload: sentTransactions
+    }
+}
+export function getRcvdTransactions(rcvdTransactions) {
+    return {
+        type: GET_RCVD_TRANSACTIONS,
+        payload: rcvdTransactions
     }
 }
 export function setBalance(balance) {
@@ -68,7 +77,9 @@ export default function reducer(state=initialState, action) {
                 isAdmin: null,
                 userid: '',
                 user: [],
-                transactions: []
+                transactions: [],
+                rcvdTransactions: [],
+                sentTransactions: [],
             }
 
         case SET_USERNAME:
@@ -99,10 +110,15 @@ export default function reducer(state=initialState, action) {
                 ...state,
                 transactions: action.payload
             }
-        case GET_USER_TRANSACTIONS:
+        case GET_SENT_TRANSACTIONS:
             return {
                 ...state,
-                transactions: action.payload
+                sentTransactions: action.payload
+            }
+        case GET_RCVD_TRANSACTIONS:
+            return {
+                ...state,
+                rcvdTransactions: action.payload
             }
         default: return state;
     }

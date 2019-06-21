@@ -2,28 +2,28 @@ import React from "react";
 import { Table } from "reactstrap";
 import { connect } from "react-redux";
 
-class UserTransTable extends React.Component {
+class UserSentTable extends React.Component {
   render(props) {
-    console.log(this.props.transactions);
+    console.log(this.props.sentTransactions);
     return (
       <div>
-        <h1>User Transactions</h1>
+        <h1>Sent Transactions</h1>
         <Table hover>
           <thead>
             <tr>
               <th>Transaction #</th>
-              <th>Username</th>
-              <th>Amount</th>
+              <th>Amount Sent</th>
+              <th>Recipient's Email</th>
               <th>Date</th>
             </tr>
           </thead>
           <tbody>
-            {this.props.transactions.map((transaction, index) => {
+            {this.props.sentTransactions.map((transaction, index) => {
               return [
                 <tr key={index}>
                   <th scope="transaction">{transaction.trans_id}</th>
-                  <td>{transaction.username}</td>
                   <td>{transaction.amount}</td>
+                  <td>{transaction.email}</td>
                   <td>{transaction.trans_date}</td>
                 </tr>
               ];
@@ -39,4 +39,4 @@ const mapStateToProps = reduxState => {
   return reduxState;
 };
 
-export default connect(mapStateToProps)(UserTransTable);
+export default connect(mapStateToProps)(UserSentTable);
