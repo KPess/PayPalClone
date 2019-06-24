@@ -5,11 +5,12 @@ const session = require('express-session');
 const authController = require('./controllers/authController');
 const adminController = require('./controllers/adminController')
 const userController = require('./controllers/userController')
+const stripe = require("stripe")("sk_test_rQjptKVen4my7b1D9ilzKtk500biiETnqV")
 
 const app = express();
 
 app.use(express.json()); //app.use is for middleware
-
+app.use(require("body-parser").text());
 app.use(session({
     secret: process.env.SESSION_SECRET,
     saveUninitialized: true,
@@ -46,5 +47,6 @@ app.get('/user/senttransactions', userController.getSentTransactions)
 app.post('/user/transactions', userController.addTransaction)
 app.put('/user/:id', userController.updateEmail)
 app.delete('/user/:id', userController.deleteAccount)
+app.post('/charge', userController.chargeCard)
 
 app.listen(5050, () => console.log(`Listening on Port 5050`));

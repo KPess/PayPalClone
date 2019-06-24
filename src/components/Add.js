@@ -4,6 +4,8 @@ import HeaderNav from "./Nav";
 import {connect} from 'react-redux'
 import {setBalance} from '../redux/reducer'
 import React from 'react'
+import { Elements } from "react-stripe-elements";
+import CheckoutForm from './CheckoutForm'
 
 class Add extends React.Component {
     constructor(props){
@@ -15,7 +17,7 @@ class Add extends React.Component {
 
     render() {
         return (
-            <div><HeaderNav/></div>
+            <div><HeaderNav/><Elements><CheckoutForm/></Elements></div>
         )
     }
 }
