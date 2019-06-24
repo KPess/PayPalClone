@@ -79,9 +79,7 @@ class Dashboard extends React.Component {
                 <HeaderNav/>
                 <h1>Welcome {user.username}! </h1>
                 <h2>Your balance is: $‎{user.balance}</h2>
-                {user.isadmin  ? (
-                <h3>You are an admin.</h3>
-                ):false}
+                
 
                 {/* 
                 1. After logout the home page still shows user's name 
@@ -99,9 +97,13 @@ class Dashboard extends React.Component {
                 from the session cookie or database. PENDING
                 */}
                 <Button className="logout-button" onClick={this.handleLogout}>Log Out</Button>
-                <AllTransTable/>
-                <UserRcvdTable/>
-                <UserSentTable/>
+                {user.isadmin  ? (
+                <h2>You are an admin.
+                    <AllTransTable/></h2>
+                
+                ): (<h2><UserRcvdTable/><UserSentTable/></h2>)}
+                
+                
             </div>
           
         )

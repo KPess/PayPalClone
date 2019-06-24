@@ -10,8 +10,11 @@ module.exports = {
     updateTransaction: (req, res) =>{
 
     },
-    deleteTransaction: (req, res) =>{
-
+    deleteTransaction: async (req, res) =>{
+        const db =   req.app.get('db')
+        const {id} = req.params
+        let updatedTransaction = await db.deleteTransaction(id)
+        return res.status(200).send(updatedTransaction)
     },
     updateCurrency: (req, res) =>{
 
