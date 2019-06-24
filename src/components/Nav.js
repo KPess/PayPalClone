@@ -50,15 +50,15 @@ class HeaderNav extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
+              {this.props.user.username ? (<NavItem>
                 <Link to="/dashboard"><Button>Dashboard</Button></Link>
-              </NavItem>
-              <NavItem>
+              </NavItem>) : false}
+              {!this.props.user.username ? (<NavItem>
                 <Link  to="/register"> <Button>Sign Up</Button></Link>
-              </NavItem>
-              <NavItem>
+              </NavItem>) : false}
+              {!this.props.user.username ? (<NavItem>
                 <Link to="/login"><Button>Log In</Button></Link>
-              </NavItem>
+              </NavItem>) : false}
               <NavItem>
                 <Link to="/"><Button className="logout-button" onClick={this.handleLogout}>Log Out</Button></Link>
               </NavItem>
