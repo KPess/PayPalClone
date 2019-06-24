@@ -1,4 +1,7 @@
 import React from 'react';
+import Axios from 'axios'
+import {connect} from 'react-redux'
+import {resetReduxState} from '../redux/reducer';
 import {
   Collapse,
   Navbar,
@@ -11,9 +14,9 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
-  import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
-export default class HeaderNav extends React.Component {
+class HeaderNav extends React.Component {
   constructor(props) {
     super(props);
 
@@ -27,6 +30,13 @@ export default class HeaderNav extends React.Component {
       // which URL is being displayed by router.
     };
   }
+  handleLogout = (e) => {
+    //Call the logout path to activate authController.logout
+    Axios.get('/auth/logout');
+    //Redirect user to home
+    // this.props.history.push('/');
+    this.props.resetReduxState();
+}
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -48,6 +58,9 @@ export default class HeaderNav extends React.Component {
               </NavItem>
               <NavItem>
                 <Link to="/login"><Button>Log In</Button></Link>
+              </NavItem>
+              <NavItem>
+                <Link to="/"><Button className="logout-button" onClick={this.handleLogout}>Log Out</Button></Link>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -73,3 +86,10 @@ export default class HeaderNav extends React.Component {
     );
   }
 }
+
+const mapStateToProps = reduxState => {
+  return reduxState;
+};
+
+
+export default connect(mapStateToProps, { resetReduxState})(HeaderNav);
