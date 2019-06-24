@@ -67,16 +67,16 @@ class HeaderNav extends React.Component {
                   Options
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
+                  <Link to="/send"><DropdownItem>
+                    Send Money
+                  </DropdownItem></Link>
+                  <Link to="/request"><DropdownItem>
+                    Request Money
+                  </DropdownItem></Link>
                   <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
+                  <Link to="/add"><DropdownItem>
+                    Add Money
+                  </DropdownItem></Link>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
