@@ -1,87 +1,83 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import {  resetReduxState, getTransactions, getRcvdTransactions, getSentTransactions } from '../redux/reducer';
-import {Button} from 'reactstrap'
-import HeaderNav from './Nav'
-import Axios from 'axios';
-import AllTransTable from './AllTransTable'
-import UserRcvdTable from './UserRcvdTable'
-import UserSentTable from './UserSentTable'
-
+import React from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import {
+  resetReduxState,
+  getTransactions,
+  getRcvdTransactions,
+  getSentTransactions
+} from "../redux/reducer";
+import { Button } from "reactstrap";
+import HeaderNav from "./Nav";
+import Axios from "axios";
+import AllTransTable from "./AllTransTable";
+import UserRcvdTable from "./UserRcvdTable";
+import UserSentTable from "./UserSentTable";
 
 class Dashboard extends React.Component {
-    state = {
-        redirect: false,
-        user: [],
-        transactions: [],
-        rcvdTransactions: [],
-        sentTransactions: []
+  state = {
+    redirect: false,
+    user: [],
+    transactions: [],
+    rcvdTransactions: [],
+    sentTransactions: []
+  };
+
+  componentDidMount() {
+    if (!this.props.user.username) {
+      this.setState({ redirect: true });
     }
-
-    componentDidMount() {
-        if(!this.props.user.username) {
-            this.setState({redirect: true})
-        }
-        if(this.props.user.isadmin) {
-            this.getAllTransactions()
-        }
-        if(!this.props.user.isadmin) {
-            this.getSentTransactions()
-        }
-        if(!this.props.user.isadmin) {
-            this.getRcvdTransactions()
-        }
-        // this.setState({user: this.props.user})
-        // this.setState({transactions: this.props.transactions})
-
+    if (this.props.user.isadmin) {
+      this.getAllTransactions();
     }
-
-    handleLogout = (e) => {
-        //Call the logout path to activate authController.logout
-        Axios.get('/auth/logout');
-        //Redirect user to home
-        this.props.history.push('/');
-        this.props.resetReduxState();
+    if (this.props.user.username && !this.props.user.isadmin) {
+      this.getSentTransactions();
     }
-
-    getAllTransactions = (e) => {
-        Axios.get('/transactions')
-        .then( response => {
-            this.props.getTransactions(response.data)
-        })
-
+    if (this.props.user.username && !this.props.user.isadmin) {
+      this.getRcvdTransactions();
     }
-    getRcvdTransactions = (e) => {
-        Axios.get('/user/rcvdtransactions')
-        .then( response => {
-            this.props.getRcvdTransactions(response.data)
-        })
+    // this.setState({user: this.props.user})
+    // this.setState({transactions: this.props.transactions})
+  }
 
+  handleLogout = e => {
+    //Call the logout path to activate authController.logout
+    Axios.get("/auth/logout");
+    //Redirect user to home
+    this.props.history.push("/");
+    this.props.resetReduxState();
+  };
+
+  getAllTransactions = e => {
+    Axios.get("/transactions").then(response => {
+      this.props.getTransactions(response.data);
+    });
+  };
+  getRcvdTransactions = e => {
+    Axios.get("/user/rcvdtransactions").then(response => {
+      this.props.getRcvdTransactions(response.data);
+    });
+  };
+  getSentTransactions = e => {
+    Axios.get("/user/senttransactions").then(response => {
+      this.props.getSentTransactions(response.data);
+    });
+  };
+
+  render() {
+    if (this.state.redirect === true) {
+      return <Redirect to="/register" />;
     }
-    getSentTransactions = (e) => {
-        Axios.get('/user/senttransactions')
-        .then( response => {
-            this.props.getSentTransactions(response.data)
-        })
+    const { user, transactions } = this.props;
+    // console.log(transactions)
+    // console.log(user)
+    return (
+      <div>
+        <HeaderNav />
+        <h1>Welcome {user.username}! </h1>
+        <h2>Your balance is: $‎{user.balance}</h2>
 
-    }
-
-    render() {
-        if(this.state.redirect === true) {
-            return <Redirect to='/register' />
-        }
-        const { user, transactions } = this.props
-        // console.log(transactions)
-        // console.log(user)
-        return (
-            <div>
-                <HeaderNav/>
-                <h1>Welcome {user.username}! </h1>
-                <h2>Your balance is: $‎{user.balance}</h2>
-                
-
-                {/* 
+        {/* 
                 1. After logout the home page still shows user's name 
                 - did logout work? SOLVED
 
@@ -96,23 +92,37 @@ class Dashboard extends React.Component {
                 to reset when the page is refreshed. These should be pulled 
                 from the session cookie or database. PENDING
                 */}
-                <Button className="logout-button" onClick={this.handleLogout}>Log Out</Button>
-                {user.isadmin  ? (
-                <h2>You are an admin.
-                    <AllTransTable/></h2>
-                
-                ): (<h2><UserRcvdTable/><UserSentTable/></h2>)}
-                
-                
-            </div>
-          
-        )
-    }
+        <Button className="logout-button" onClick={this.handleLogout}>
+          Log Out
+        </Button>
+        {user.isadmin ? (
+          <h2>
+            You are an admin.
+            <AllTransTable />
+          </h2>
+        ) : (
+          <h2>
+            <UserRcvdTable />
+            <UserSentTable />
+          </h2>
+        )}
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = reduxState => {
-    const { user, isadmin, transactions, sentTransactions, rcvdTransactions} = reduxState;
-    return {user, isadmin, transactions, sentTransactions, rcvdTransactions}
+  const {
+    user,
+    isadmin,
+    transactions,
+    sentTransactions,
+    rcvdTransactions
+  } = reduxState;
+  return { user, isadmin, transactions, sentTransactions, rcvdTransactions };
 };
 
-export default connect(mapStateToProps, { resetReduxState, getTransactions, getRcvdTransactions, getSentTransactions})(Dashboard);
+export default connect(
+  mapStateToProps,
+  { resetReduxState, getTransactions, getRcvdTransactions, getSentTransactions }
+)(Dashboard);
