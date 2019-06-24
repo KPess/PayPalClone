@@ -59,9 +59,9 @@ class HeaderNav extends React.Component {
               {!this.props.user.username ? (<NavItem>
                 <Link to="/login"><Button>Log In</Button></Link>
               </NavItem>) : false}
-              <NavItem>
+              {this.props.user.username ? (<NavItem>
                 <Link to="/"><Button className="logout-button" onClick={this.handleLogout}>Log Out</Button></Link>
-              </NavItem>
+              </NavItem>) : false}
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options

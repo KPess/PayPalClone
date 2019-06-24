@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import { Redirect } from 'react-router-dom';
-import { setBalance, setUsername } from '../redux/reducer';
+import { setBalance, setUsername, setUser } from '../redux/reducer';
 import {connect} from 'react-redux'
 import {Button} from 'reactstrap'
 import HeaderNav from './Nav'
@@ -40,13 +40,13 @@ class Register extends Component {
       // Placeholder accesses the placeholder name from the element.
       // toLowerCase() invoked matches the placeholder to the lowercase variables.
     });
-    console.log(this.state.preferredCurrency);
+    // console.log(this.state.preferredCurrency);
   };
 
   handleClick = (e) => {
       e.preventDefault()
       // Prevent default prevents the page from re-rendering 
-      // when the submit button is PermissionRequestedEvent, 
+      // when the submit button is pressed, 
       // which was breaking stuff.
       Axios.post('/auth/register/user', {
         username: this.state.username,
@@ -58,6 +58,7 @@ class Register extends Component {
       }).then( response => {
             this.props.setUsername(response.data.username);
             this.props.setBalance(response.data.balance);
+            this.props.setUser(response.data);
             this.setState({redirect: true});
 
       }).catch( error => {
@@ -111,12 +112,8 @@ class Register extends Component {
   }
 }
 
-const mapStateToProps = state => { //Takes in Redux state
-    return {
-        username: state.username, //Maps certain parts of state to props. The key name can be changed and passed as a prop with that name
-        balance: state.balance, // Prop name on the left, prop value on the right
-        loginFirst: state.loginFirst
-    }
+const mapStateToProps = reduxState => { //Takes in Redux state
+    return reduxState
 }
 
-export default connect(mapStateToProps, {setBalance, setUsername})(Register); //connect invoked returns a function, and then passes in register
+export default connect(mapStateToProps, {setBalance, setUsername, setUser})(Register); //connect invoked returns a function, and then passes in register
