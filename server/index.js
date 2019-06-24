@@ -6,10 +6,13 @@ const authController = require('./controllers/authController');
 const adminController = require('./controllers/adminController')
 const userController = require('./controllers/userController')
 const stripe = require("stripe")("sk_test_rQjptKVen4my7b1D9ilzKtk500biiETnqV")
+const uuid = require("uuid/v4");
+const cors = require("cors");
 
 const app = express();
 
 app.use(express.json()); //app.use is for middleware
+app.use(cors());
 app.use(require("body-parser").text());
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -48,5 +51,50 @@ app.post('/user/transactions', userController.addTransaction)
 app.put('/user/:id', userController.updateEmail)
 app.delete('/user/:id', userController.deleteAccount)
 app.post('/charge', userController.chargeCard)
+app.post("/checkout", async (req, res) => {
+    console.log("Request:", req.body);
+  
+    let error;
+    let status;
+    try {
+      const { product, token } = req.body;
+  
+      const customer = await stripe.customers.create({
+        email: token.email,
+        source: token.id
+      });
+  
+      const idempotency_key = uuid();
+      const charge = await stripe.charges.create(
+        {
+          amount: product.price * 100,
+          currency: "usd",
+          customer: customer.id,
+          receipt_email: token.email,
+          description: `Purchased the ${product.name}`,
+          shipping: {
+            name: token.card.name,
+            address: {
+              line1: token.card.address_line1,
+              line2: token.card.address_line2,
+              city: token.card.address_city,
+              country: token.card.address_country,
+              postal_code: token.card.address_zip
+            }
+          }
+        },
+        {
+          idempotency_key
+        }
+      );
+      console.log("Charge:", { charge });
+      status = "success";
+    } catch (error) {
+      console.error("Error:", error);
+      status = "failure";
+    }
+  
+    res.json({ error, status });
+  });
 
 app.listen(5050, () => console.log(`Listening on Port 5050`));
