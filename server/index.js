@@ -37,7 +37,7 @@ app.delete('/transactions/:id', adminController.deleteTransaction)
 app.get('/currencies', adminController.getCurrencies)
 app.post('/currencies', adminController.addCurrency)
 app.delete('/currencies/:id', adminController.deleteCurrency)
-// app.put('/currencies/:id', adminController.updateCurrency)
+app.put('/user/balance/:id', adminController.updateBalance)
 // app.put('/transactions/:id', adminController.updateTransaction)
 
 //user endpoints

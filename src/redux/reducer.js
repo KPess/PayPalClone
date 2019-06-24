@@ -1,7 +1,7 @@
 //initial state
 const initialState = {
     username: '',
-    balance: null,
+    balance: 0,
     loginFirst: false,
     loggedIn: false,
     isadmin: null,
@@ -20,6 +20,7 @@ const GET_TRANSACTIONS = "GET_TRANSACTIONS"
 const GET_SENT_TRANSACTIONS = "GET_SENT_TRANSACTIONS"
 const GET_RCVD_TRANSACTIONS = "GET_RCVD_TRANSACTIONS"
 const SET_INITIALSTATE = "SET_INITIALSTATE"
+
 
 //action creators
 export function resetReduxState() {
@@ -72,7 +73,7 @@ export default function reducer(state=initialState, action) {
         case SET_INITIALSTATE:
             return {
                 username: '',
-                balance: null,
+                balance: 0,
                 loggedIn: false,
                 isAdmin: null,
                 userid: '',
@@ -83,19 +84,11 @@ export default function reducer(state=initialState, action) {
             }
 
         case SET_USERNAME:
-            // {
-            //     ...state,
-            //     username: action.payload
-            // }
             return {
                 ...state,
                 username: action.payload
             }
         case SET_BALANCE:
-            // {
-            //     ...state,
-            //     balance: action.payload
-            // }
             return {
                 ...state,
                 balance: action.payload

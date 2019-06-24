@@ -13,10 +13,14 @@ module.exports = {
     deleteTransaction: async (req, res) =>{
         const db =   req.app.get('db')
         const {id} = req.params
-        let updatedTransaction = await db.deleteTransaction(id)
-        return res.status(200).send(updatedTransaction)
+        let deletedTransaction = await db.deleteTransaction(id)
+        return res.status(200).send(deletedTransaction)
     },
-    updateCurrency: (req, res) =>{
+    updateBalance: async (req, res) =>{
+        const db = req.app.get('db')
+        const {balance} = req.body
+        const updatedBalance = await db.setBalance(balance)
+        return res.status(200).json(updatedBalance)
 
     },
     deleteCurrency: (req, res) =>{
