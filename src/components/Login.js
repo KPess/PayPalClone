@@ -66,7 +66,7 @@ export class Login extends Component {
         <h3>{this.state.error}</h3>
         <form>
         <input required placeholder="Username" name="username" onChange={this.handleChange} />
-        <input required placeholder="Password" name="password" onChange={this.handleChange} />
+        <input required placeholder="Password" name="password" type="password" onChange={this.handleChange} />
         <Button onClick={this.handleClick}>Submit</Button>
         </form>
       </div>

@@ -95,7 +95,7 @@ class Register extends Component {
         <h3>{this.state.error}</h3>
         <form>
         <input required placeholder="Username" name="username" onChange={this.handleChange} />
-        <input required placeholder="Password" name="password" onChange={this.handleChange} />
+        <input required placeholder="Password" name="password" type="password" onChange={this.handleChange} />
         <input required placeholder="Email" name="email" onChange={this.handleChange} />
         <input required placeholder="First Name" name="firstName"onChange={this.handleChange} />
         <input required placeholder="Last Name" name="lastName" onChange={this.handleChange} />

@@ -15,7 +15,9 @@ class Send extends React.Component {
     super(props);
     this.state = {
       recipEmail: "",
-      sendAmount: ""
+      senderEmail: "",
+      senderPassword: "",
+      requestAmount: ""
     };
   }
   handleChange = e => {
@@ -44,30 +46,50 @@ class Send extends React.Component {
         <h2>Your balance is: $‎{this.props.balance}</h2>
         <Form id="sendForm">
           <FormGroup>
-            <Label for="recipEmail">
+            <Label for="senderEmail">
               <h2>Request money from another user</h2>
             </Label>
           </FormGroup>
           <FormGroup>
-            <Label for="recipEmail">Email</Label>
+            <Label for="senderEmail">Your Email</Label>
+            <Input
+              onChange={this.handleChange}
+              type="email"
+              name="senderEmail"
+              id="senderEmail"
+              placeholder="Email address of sender"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="senderPassword">Your Email Password</Label>
+            <Input
+              onChange={this.handleChange}
+              type="password"
+              name="senderPassword"
+              id="senderPassword"
+              placeholder="Your email password"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="requestAmount">Request Amount</Label>
+            <Input
+              onChange={this.handleChange}
+            //   max={this.props.balance}
+              min="5"
+              type="number"
+              name="requestAmount"
+              id="requestAmount"
+              placeholder="$xx.xx"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="recipEmail">Request recipient's email</Label>
             <Input
               onChange={this.handleChange}
               type="email"
               name="recipEmail"
               id="recipEmail"
               placeholder="Email address of recipient"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="sendAmount">Amount</Label>
-            <Input
-              onChange={this.handleChange}
-              max={this.props.balance}
-              min="5"
-              type="number"
-              name="sendAmount"
-              id="sendAmount"
-              placeholder="$xx.xx"
             />
             <Button onClick={this.handleSubmit}>Submit</Button>
           </FormGroup>
