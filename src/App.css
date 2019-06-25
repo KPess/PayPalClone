@@ -33,3 +33,11 @@
     transform: rotate(360deg);
   }
 }
+
+#sendForm {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  max-width: 50vmin;
+}

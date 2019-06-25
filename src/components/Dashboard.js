@@ -13,7 +13,6 @@ import AllTransTable from "./AllTransTable";
 import UserRcvdTable from "./UserRcvdTable";
 import UserSentTable from "./UserSentTable";
 import UpdateBalance from "./UpdateBalance";
-import { Button } from "reactstrap";
 
 class Dashboard extends React.Component {
   state = {
@@ -78,22 +77,6 @@ class Dashboard extends React.Component {
         <h1>Welcome {user.username}! </h1>
         <h2>Your balance is: $‎{balance}</h2>
 
-        {/* 
-                1. After logout the home page still shows user's name 
-                - did logout work? SOLVED
-
-                2. Unable to accurately display whether 
-                the current user is admin - SOLVED
-
-
-                3. REPLACE $ WITH SYMBOL OF CURRENT USER'S 
-                PREFERRED CURRENCY FROM DB - PENDING
-
-                4. Pulling username and balance from REDUX causes them 
-                to reset when the page is refreshed. These should be pulled 
-                from the session cookie or database. PENDING
-                */}
-        {/* <Button className="logout-button" onClick={this.handleLogout}>Log Out</Button> */}
         {user.isadmin ? (
           <h2>
             You are an admin.

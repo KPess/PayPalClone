@@ -17,18 +17,10 @@ module.exports = {
   addTransaction: (req, res) => {},
   updateEmail: (req, res) => {},
   deleteAccount: (req, res) => {},
-  chargeCard: async (req, res) => {
-    try {
-      let { status } = await stripe.charges.create({
-        amount: 2000,
-        currency: "usd",
-        description: "An example charge",
-        source: req.body
-      });
-
-      res.json({ status });
-    } catch (err) {
-      res.status(500).end();
-    }
+  loadDeposit: async (req, res) => {
+    const db = req.app.get('db')
+    const {balance} = req.body
+    const updatedBalance = await db.loadDeposit(balance, req.session.user.id)
+    return res.status(200).json(updatedBalance)
   }
-};
+}

@@ -9,9 +9,9 @@ toast.configure();
 
 export default function CheckoutForm() {
   const [product] = React.useState({
-    name: "Deposit funds",
-    price: 64998.67,
-    description: "Cool car"
+    name: "Donate $100",
+    price: 100.00,
+    description: "Donate"
   });
 
   async function handleToken(token, addresses) {
@@ -38,7 +38,7 @@ export default function CheckoutForm() {
         stripeKey="pk_test_2QtpeVuM2hru92q1zHxaZQFK002dx0OCJ1"
         token={handleToken}
         amount={product.price * 100}
-        name="Tesla Roadster"
+        name="Deposit"
         billingAddress
         shippingAddress
       />
