@@ -15,7 +15,12 @@ module.exports = {
     return res.status(200).send(rcvdTransactions);
   },
   addTransaction: (req, res) => {},
-  updateEmail: (req, res) => {},
+  updateBalance: async (req, res) => {
+    const db = req.app.get('db')
+    const {balance} = req.body
+    const updatedBalance = await db.setBalance(balance)
+    return res.status(200).json(updatedBalance)
+  },
   deleteAccount: (req, res) => {},
   loadDeposit: async (req, res) => {
     const db = req.app.get('db')

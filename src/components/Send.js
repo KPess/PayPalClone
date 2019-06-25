@@ -7,20 +7,39 @@
 //      3. Put received funds into balance of recipient through DB.
 import HeaderNav from "./Nav";
 import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom'
 import { setBalance } from "../redux/reducer";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input} from "reactstrap";
 import React from "react";
+import Axios from "axios";
 
 class Send extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        recipEmail: '',
-        sendAmount: ''
+      recipEmail: "",
+      sendAmount: ""
     };
   }
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+    console.log(this.state);
+  };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    Axios.put(`/user/transactions/${this.props.user.id}`, {
+      balance: this.state.sendAmount
+
+    });
+    console.log(this.props.user.id);
+  };
 
   render() {
+      if(!this.props.username) {
+          return <Redirect to='/'/>
+      }
     return (
       <div>
         <HeaderNav />
@@ -28,13 +47,16 @@ class Send extends React.Component {
         <h2>Your balance is: $‎{this.props.balance}</h2>
         <Form id="sendForm">
           <FormGroup>
-            <Label for="recipEmail"><h2>Send money to another user</h2></Label>
+            <Label for="recipEmail">
+              <h2>Send money to another user</h2>
+            </Label>
           </FormGroup>
           <FormGroup>
             <Label for="recipEmail">Email</Label>
             <Input
+              onChange={this.handleChange}
               type="email"
-              name="email"
+              name="recipEmail"
               id="recipEmail"
               placeholder="Email address of recipient"
             />
@@ -42,14 +64,15 @@ class Send extends React.Component {
           <FormGroup>
             <Label for="sendAmount">Amount</Label>
             <Input
+              onChange={this.handleChange}
               max={this.props.balance}
               min="5"
               type="number"
-              name="number"
+              name="sendAmount"
               id="sendAmount"
               placeholder="$xx.xx"
             />
-            <Button>Submit</Button>
+            <Button onClick={this.handleSubmit}>Submit</Button>
           </FormGroup>
         </Form>
       </div>

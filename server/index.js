@@ -48,7 +48,8 @@ app.put("/user/balance/:id", adminController.updateBalance);
 app.get("/user/rcvdtransactions", userController.getRcvdTransactions);
 app.get("/user/senttransactions", userController.getSentTransactions);
 app.post("/user/transactions", userController.addTransaction);
-app.put("/user/:id", userController.updateEmail);
+// app.put("/user/:id", userController.updateEmail);
+app.put("/user/transactions/:id", adminController.updateBalance);
 app.delete("/user/:id", userController.deleteAccount);
 app.put('/load/:id', userController.loadDeposit)
 app.post("/checkout", async (req, res) => {

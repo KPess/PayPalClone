@@ -75,7 +75,7 @@ class HeaderNav extends React.Component {
                   </DropdownItem></Link>
                   <DropdownItem divider />
                   <Link to="/add"><DropdownItem>
-                    Add Money
+                    Donate Money
                   </DropdownItem></Link>
                 </DropdownMenu>
               </UncontrolledDropdown>
