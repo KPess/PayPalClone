@@ -3,6 +3,7 @@ const express = require("express");
 const massive = require("massive");
 const session = require("express-session");
 const authController = require("./controllers/authController");
+const mailController = require("./controllers/authController");
 const adminController = require("./controllers/adminController");
 const userController = require("./controllers/userController");
 const stripe = require("stripe")("sk_test_rQjptKVen4my7b1D9ilzKtk500biiETnqV");
@@ -29,6 +30,9 @@ massive(process.env.CONNECTION_STRING).then(db => {
   console.log("Check out my MASSIVE connection");
 });
 
+
+
+
 //auth endpoints
 app.post("/auth/register/user", authController.register);
 app.post("/auth/login/user", authController.login);
@@ -44,6 +48,33 @@ app.delete("/currencies/:id", adminController.deleteCurrency);
 app.put("/user/balance/:id", adminController.updateBalance);
 // app.put('/transactions/:id', adminController.updateTransaction)
 
+
+//NODEMAILER
+app.post('/send', (req, res, next) => {
+  var name = req.body.name
+  var email = req.body.email
+  var message = req.body.message
+  var content = `name: ${name} \n email: ${email} \n message: ${message} `
+
+  var mail = {
+    from: name,
+    to: 'paypalclone@gmail.com',  //Change to email address that you want to receive messages on
+    subject: 'New Message from Contact Form',
+    text: content
+  }
+
+  transporter.sendMail(mail, (err, data) => {
+    if (err) {
+      res.json({
+        msg: 'fail'
+      })
+    } else {
+      res.json({
+        msg: 'success'
+      })
+    }
+  })
+})
 //user endpoints
 app.get("/user/rcvdtransactions", userController.getRcvdTransactions);
 app.get("/user/senttransactions", userController.getSentTransactions);
