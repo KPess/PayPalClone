@@ -1,9 +1,10 @@
 require("dotenv").config();
+const nodemailer = require('nodemailer');
 const express = require("express");
 const massive = require("massive");
 const session = require("express-session");
 const authController = require("./controllers/authController");
-const mailController = require("./controllers/authController");
+const mailController = require("./controllers/mailController");
 const adminController = require("./controllers/adminController");
 const userController = require("./controllers/userController");
 const stripe = require("stripe")("sk_test_rQjptKVen4my7b1D9ilzKtk500biiETnqV");
@@ -51,6 +52,13 @@ app.put("/user/balance/:id", adminController.updateBalance);
 
 //NODEMAILER
 app.post('/send', (req, res, next) => {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'paypalclone@gmail.com',
+      pass: 'Baconator5000'
+    }
+  })
   var name = req.body.name
   var email = req.body.email
   var message = req.body.message
@@ -82,7 +90,9 @@ app.post("/user/transactions", userController.addTransaction);
 // app.put("/user/:id", userController.updateEmail);
 app.put("/user/transactions/:id", adminController.updateBalance);
 app.delete("/user/:id", userController.deleteAccount);
-app.put('/load/:id', userController.loadDeposit)
+// app.put('/load/:id', userController.loadDeposit)
+
+//Stripe endpoint
 app.post("/checkout", async (req, res) => {
   console.log("Request:", req.body);
 

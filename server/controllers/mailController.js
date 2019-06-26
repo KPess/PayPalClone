@@ -4,7 +4,7 @@ module.exports = {
 }
 
 var nodemailer = require('nodemailer');
-const creds = require('../config/config');
+const creds = require('./config');
 
 var transport = {
   host: 'smtp.gmail.com',
