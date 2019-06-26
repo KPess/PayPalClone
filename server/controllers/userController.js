@@ -17,9 +17,9 @@ module.exports = {
   addTransaction: (req, res) => {},
   updateBalance: async (req, res) => {
     const db = req.app.get('db')
-    const {balance} = req.body
-    const updatedBalance = await db.setBalance(balance)
-    return res.status(200).json(updatedBalance)
+    const {sendAmount, recipID, userid} = req.body
+    const updatedTransaction = await db.addSendTrans(sendAmount, recipID, userid)
+    return res.status(200).json(updatedTransaction)
   },
   deleteAccount: (req, res) => {},
   loadDeposit: async (req, res) => {

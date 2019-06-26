@@ -65,7 +65,7 @@ module.exports = {
     const { username, password } = req.body;
 
     if (!username || !password) {
-      res.status(406).json({error: "Please fill in all fields"});
+      res.status(406).json({ error: "Please fill in all fields" });
     } else {
       //Check if user exists
       const db = req.app.get("db");
@@ -76,9 +76,11 @@ module.exports = {
             password,
             user[0].passwordhash
           );
-        
+
           if (!isAuthenticated) {
-            return res.status(403).json({error:"Incorrect login information 1"});
+            return res
+              .status(403)
+              .json({ error: "Incorrect login information 1" });
           } else {
             db.checkForUser(username).then(() => {
               //Set session as user
@@ -93,8 +95,9 @@ module.exports = {
             });
           }
         } else {
-          return res.status(403).json({error:"Incorrect login information 2"
-          });
+          return res
+            .status(403)
+            .json({ error: "Incorrect login information 2" });
         }
       });
     }
@@ -103,7 +106,6 @@ module.exports = {
     //Destroy session
     req.session.destroy();
     // console.log(req.session)
-    res.sendStatus(200)
-
+    res.sendStatus(200);
   }
 };
