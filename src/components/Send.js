@@ -1,4 +1,5 @@
-
+//Balances can go negative.
+//What happens if an invalid amount or recipient ID is entered?
 
 
 import HeaderNav from "./Nav";
@@ -32,14 +33,16 @@ class Send extends React.Component {
     })
       .then(response => {
         // this.props.setUsername(response.data.username);
-        this.props.setBalance(response.data.balance);
+        this.props.setBalance(response.data[0].balance);
+        
+        // console.log(response)
         // this.props.setUser(response.data);
         // this.setState({ redirect: true });
       })
       .catch(error => {
         this.setState({ error: error.response.data.error });
       });
-    console.log(this.state, this.props);
+    // console.log(this.state, this.props);
   };
 
   render() {
