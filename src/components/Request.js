@@ -55,12 +55,13 @@ class Request extends React.Component {
           method="POST"
         >
           <div className="form-group">
-            <label for="name">Name</label>
-            <input type="text" className="form-control" id="name" />
+            <label for="name">Your Name</label>
+            <input type="text" className="form-control" id="name" placeholder="Your Name"/>
           </div>
           <div className="form-group">
             <label for="exampleInputEmail1">Send to this email address</label>
             <input
+              placeholder="Email address"
               type="email"
               className="form-control"
               id="email"
@@ -69,7 +70,7 @@ class Request extends React.Component {
           </div>
           <div className="form-group">
             <label for="message">Message</label>
-            <textarea className="form-control" rows="5" id="message" />
+            <textarea placeholder="Ex. - Hi USER, please send me $50 on PayPalClone"className="form-control" rows="5" id="message" />
           </div>
           <button type="submit" className="btn btn-primary">
             Submit
