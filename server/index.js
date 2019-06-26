@@ -66,7 +66,7 @@ app.post('/send', (req, res, next) => {
 
   var mail = {
     from: name,
-    to: 'paypalclone@gmail.com',  //Change to email address that you want to receive messages on
+    to: `${email}`,  //Change to email address that you want to receive messages on
     subject: 'New Message from Contact Form',
     text: content
   }

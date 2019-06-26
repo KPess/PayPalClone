@@ -1,7 +1,3 @@
-module.exports = {
-    USER: 'paypalclone@gmail.com', 
-    PASS: 'Baconator5000',
-}
 
 var nodemailer = require('nodemailer');
 const creds = require('./config');
