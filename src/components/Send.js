@@ -1,5 +1,7 @@
 //Balances can go negative.
 //What happens if an invalid amount or recipient ID is entered?
+//Add a success message when transaction goes through
+//Redirect to dashboard?
 
 
 import HeaderNav from "./Nav";
