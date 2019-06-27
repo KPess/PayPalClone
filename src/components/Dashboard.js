@@ -75,7 +75,7 @@ class Dashboard extends React.Component {
       <div>
         <HeaderNav />
         <h1>Welcome {user.username}! </h1>
-        <h2>Your balance is: $‎{balance}</h2>
+        <h2>Your balance is: $‎{user.balance}</h2>
 
         {user.isadmin ? (
           <h2>

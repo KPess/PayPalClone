@@ -108,5 +108,22 @@ module.exports = {
     req.session.destroy();
     // console.log(req.session)
     res.sendStatus(200);
+  },
+  currentSession: async (req, res) => {
+    const db = req.app.get('db'),
+    {username} = req.session.user;
+
+    const foundUser = await db.checkForUser(username);
+    const user = foundUser[0];
+    if (req.session) {
+      req.session.user = {
+        username: user.username,
+        isadmin: user.isadmin,
+        id: user.id,
+        balance: user.balance,
+        user: user
+      };
+      return res.send(req.session.user);
+    }
   }
 };

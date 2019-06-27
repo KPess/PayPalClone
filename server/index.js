@@ -38,6 +38,7 @@ massive(process.env.CONNECTION_STRING).then(db => {
 app.post("/auth/register/user", authController.register);
 app.post("/auth/login/user", authController.login);
 app.get("/auth/logout", authController.logout);
+app.get("/auth/session", authController.currentSession)
 
 //admin endpoints
 app.get("/transactions", adminController.getAllTransactions);

@@ -1,7 +1,7 @@
 import React from 'react';
 import Axios from 'axios'
 import {connect} from 'react-redux'
-import {resetReduxState} from '../redux/reducer';
+import {resetReduxState, setUser} from '../redux/reducer';
 import {
   Collapse,
   Navbar,
@@ -23,12 +23,22 @@ class HeaderNav extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
+      user: null
       // onRegister: false,
       // onLogin: false,
       // onDashboard: false,
       // Change which buttons appear on the nav bar based on 
       // which URL is being displayed by router.
     };
+  }
+
+  componentDidMount() {
+    Axios.get("/auth/session")
+          .then((user) => {
+            this.props.setUser(user.data)
+            this.setState({user: user.data})
+          })
+
   }
   handleLogout = (e) => {
     //Call the logout path to activate authController.logout
@@ -92,4 +102,4 @@ const mapStateToProps = reduxState => {
 };
 
 
-export default connect(mapStateToProps, { resetReduxState})(HeaderNav);
+export default connect(mapStateToProps, { resetReduxState, setUser})(HeaderNav);
