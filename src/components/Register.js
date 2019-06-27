@@ -29,7 +29,6 @@ class Register extends Component {
       // Placeholder accesses the placeholder name from the element.
       // toLowerCase() invoked matches the placeholder to the lowercase variables.
     });
-    console.log(e.target.value)
   };
 
   handleDropdownChange = e => {
@@ -85,6 +84,10 @@ class Register extends Component {
 
     if(this.state.redirect === true) {
         return <Redirect to='/dashboard' />
+    }
+
+    if(this.props.username){
+      return <Redirect to='/dashboard'/>
     }
 
     

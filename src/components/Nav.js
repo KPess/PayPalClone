@@ -22,13 +22,7 @@ class HeaderNav extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false,
-      user: null
-      // onRegister: false,
-      // onLogin: false,
-      // onDashboard: false,
-      // Change which buttons appear on the nav bar based on 
-      // which URL is being displayed by router.
+      user: []
     };
   }
 

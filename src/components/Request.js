@@ -40,9 +40,9 @@ class Request extends React.Component {
     });
   }
   render() {
-    if (!this.props.username) {
-      return <Redirect to="/" />;
-    }
+    // if (!this.props.username) {
+    //   return <Redirect to="/" />;
+    // }
     return (
       <div>
         <HeaderNav />

@@ -36,6 +36,7 @@ class Dashboard extends React.Component {
     if (!this.props.user.isadmin) {
       this.getRcvdTransactions();
     }
+    this.getAllTransactions();
     // this.setState({user: this.props.user})
     // this.setState({transactions: this.props.transactions})
   }
@@ -66,11 +67,9 @@ class Dashboard extends React.Component {
 
   render() {
     if (this.state.redirect === true) {
-      return <Redirect to="/register" />;
+      return <Redirect to="/" />;
     }
-    const { user, balance } = this.props;
-    // console.log(transactions)
-    // console.log(user)
+    const { user } = this.props;
     return (
       <div>
         <HeaderNav />
