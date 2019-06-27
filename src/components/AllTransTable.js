@@ -42,7 +42,7 @@ class AllTransTable extends React.Component {
                 <tr key={index}>
                   <th scope="transaction">{transaction.trans_id}</th>
                   <td>{transaction.username}</td>
-                  <td>{transaction.amount}</td>
+                  <td>${transaction.amount}</td>
                   <td>{transaction.trans_date}</td>
                   <td>
                     <Button

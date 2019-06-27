@@ -88,7 +88,8 @@ module.exports = {
                 username: user[0].username,
                 isadmin: user[0].isadmin,
                 id: user[0].id,
-                balance: user[0].balance
+                balance: user[0].balance,
+                user: user[0]
               };
               // console.log(req.session.user);
               res.status(200).json(req.session.user);
