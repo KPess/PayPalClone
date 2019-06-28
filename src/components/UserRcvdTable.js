@@ -22,7 +22,7 @@ class UserRcvdTable extends React.Component {
               return [
                 <tr key={index}>
                   <th scope="transaction">{transaction.trans_id}</th>
-                  <td>{transaction.amount}</td>
+                  <td>${transaction.amount}</td>
                   <td>{transaction.email}</td>
                   <td>{transaction.trans_date}</td>
                 </tr>
