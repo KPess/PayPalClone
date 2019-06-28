@@ -72,7 +72,7 @@ class Request extends React.Component {
           <div className="form-group">
             <label for="message">Message</label>
             <textarea 
-              placeholder={`Hi USER, please send me $50 on PayPalClone ${this.props}`}
+              placeholder={`Hi USER, please send me $50 on PayPalClone. My user ID is ${user.id}`}
               className="form-control" 
               rows="5" 
               id="message" />
