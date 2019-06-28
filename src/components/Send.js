@@ -48,14 +48,15 @@ class Send extends React.Component {
   };
 
   render() {
-    // if (!this.props.username) {
-    //   return <Redirect to="/" />;
-    // }
+    const {user} = this.props
+      if (!user.username) {
+        return <Redirect to="/" />;
+      }
     return (
       <div>
         <HeaderNav />
-        <h1>Welcome {this.props.user.username}! </h1>
-        <h2>Your balance is: $‎{this.props.balance}</h2>
+        <h1>Welcome {user.username}! </h1>
+        <h2>Your balance is: $‎{user.balance}</h2>
         <Form id="sendForm">
           <FormGroup>
             <Label for="recipID">
