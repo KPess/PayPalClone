@@ -37,17 +37,7 @@ class Dashboard extends React.Component {
       this.getRcvdTransactions();
     }
     this.getAllTransactions();
-    // this.setState({user: this.props.user})
-    // this.setState({transactions: this.props.transactions})
   }
-
-  // handleLogout = (e) => {
-  //     //Call the logout path to activate authController.logout
-  //     Axios.get('/auth/logout');
-  //     //Redirect user to home
-  //     this.props.history.push('/');
-  //     this.props.resetReduxState();
-  // }
 
   getAllTransactions = e => {
     Axios.get("/transactions").then(response => {
@@ -78,7 +68,6 @@ class Dashboard extends React.Component {
 
         {user.isadmin ? (
           <h2>
-            You are an admin.
             <UpdateBalance />
             <AllTransTable />
           </h2>

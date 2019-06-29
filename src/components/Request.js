@@ -1,6 +1,3 @@
-//Request money from admin.
-//Nodemailer will email admin
-
 import HeaderNav from "./Nav";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";

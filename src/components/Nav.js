@@ -49,7 +49,7 @@ class HeaderNav extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar id="navbar" color="light" light expand="md">
           <NavbarBrand href="/#/">PayPal</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
