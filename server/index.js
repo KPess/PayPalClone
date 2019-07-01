@@ -1,5 +1,5 @@
 require("dotenv").config();
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 const express = require("express");
 const massive = require("massive");
 const session = require("express-session");
@@ -11,8 +11,10 @@ const stripe = require("stripe")("sk_test_rQjptKVen4my7b1D9ilzKtk500biiETnqV");
 const uuid = require("uuid/v4");
 const cors = require("cors");
 const app = express();
+const path = require("path");
 
 app.use(express.json()); //app.use is for middleware
+app.use(express.static(`${__dirname}/../build`));
 app.use(cors());
 app.use(require("body-parser").text());
 app.use(
@@ -32,13 +34,11 @@ massive(process.env.CONNECTION_STRING).then(db => {
 });
 
 
-
-
 //auth endpoints
 app.post("/auth/register/user", authController.register);
 app.post("/auth/login/user", authController.login);
 app.get("/auth/logout", authController.logout);
-app.get("/auth/session", authController.currentSession)
+app.get("/auth/session", authController.currentSession);
 
 //admin endpoints
 app.get("/transactions", adminController.getAllTransactions);
@@ -50,8 +50,6 @@ app.delete("/currencies/:id", adminController.deleteCurrency);
 app.put("/user/balance/:id", adminController.updateBalance);
 // app.put('/transactions/:id', adminController.updateTransaction)
 
-
-
 //user endpoints
 app.get("/user/rcvdtransactions", userController.getRcvdTransactions);
 app.get("/user/senttransactions", userController.getSentTransactions);
@@ -61,88 +59,90 @@ app.put("/user/transactions", userController.updateBalance);
 app.delete("/user/:id", userController.deleteAccount);
 // app.put('/load/:id', userController.loadDeposit)
 
-
 //NODEMAILER
-app.post('/send', (req, res, next) => {
+app.post("/send", (req, res, next) => {
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: "gmail",
     auth: {
-      user: 'paypalclone@gmail.com',
-      pass: 'Baconator5000'
+      user: "paypalclone@gmail.com",
+      pass: "Baconator5000"
     }
-  })
-  var name = req.body.name
-  var email = req.body.email
-  var message = req.body.message
-  var content = `name: ${name} \n email: ${email} \n message: ${message} `
-
+  });
+  var name = req.body.name;
+  var email = req.body.email;
+  var message = req.body.message;
+  var content = `name: ${name} \n email: ${email} \n message: ${message} `;
+  
   var mail = {
     from: name,
-    to: `${email}`,  //Change to email address that you want to receive messages on
-    subject: 'Request Received from PayPalClone',
+    to: `${email}`, //Change to email address that you want to receive messages on
+    subject: "Request Received from PayPalClone",
     text: content
-  }
-
+  };
+  
   transporter.sendMail(mail, (err, data) => {
     if (err) {
       res.json({
-        msg: 'fail'
-      })
+        msg: "fail"
+      });
     } else {
       res.json({
-        msg: 'success'
-      })
+        msg: "success"
+      });
     }
-  })
-})
-
+  });
+});
 
 //Stripe endpoint
 app.post("/checkout", async (req, res) => {
   console.log("Request:", req.body);
-
+  
   let error;
   let status;
   try {
     const { product, token } = req.body;
-
+    
     const customer = await stripe.customers.create({
       email: token.email,
       source: token.id
     });
-
+    
     const idempotency_key = uuid();
-    const charge = await stripe.charges
-      .create(
-        {
-          amount: product.price * 100,
-          currency: "usd",
-          customer: customer.id,
-          receipt_email: token.email,
-          description: `${product.name}`,
-          shipping: {
-            name: token.card.name,
-            address: {
-              line1: token.card.address_line1,
-              line2: token.card.address_line2,
-              city: token.card.address_city,
-              country: token.card.address_country,
-              postal_code: token.card.address_zip
-            }
+    const charge = await stripe.charges.create(
+      {
+        amount: product.price * 100,
+        currency: "usd",
+        customer: customer.id,
+        receipt_email: token.email,
+        description: `${product.name}`,
+        shipping: {
+          name: token.card.name,
+          address: {
+            line1: token.card.address_line1,
+            line2: token.card.address_line2,
+            city: token.card.address_city,
+            country: token.card.address_country,
+            postal_code: token.card.address_zip
           }
-        },
-        {
-          idempotency_key
         }
+      },
+      {
+        idempotency_key
+      }
       );
-    console.log("Charge:", { charge });
-    status = "success";
-  } catch (error) {
-    console.error("Error:", error);
-    status = "failure";
-  }
-
-  res.json({ error, status });
-});
-
-app.listen(5050, () => console.log(`Listening on Port 5050`));
+      console.log("Charge:", { charge });
+      status = "success";
+    } catch (error) {
+      console.error("Error:", error);
+      status = "failure";
+    }
+    
+    res.json({ error, status });
+  });
+  //Point your server to front end static files. Tells express to look for build folder.
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../build/index.html"));
+  });
+  
+  app.listen(5050, () => console.log(`Listening on Port 5050`));
+  
