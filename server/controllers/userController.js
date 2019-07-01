@@ -19,6 +19,7 @@ module.exports = {
     const db = req.app.get('db')
     const {sendAmount, recipID, userid} = req.body
     const updatedTransaction = await db.addSendTrans(sendAmount, recipID, userid)
+    // console.log(updatedTransaction)
     return res.status(200).json(updatedTransaction)
   },
   deleteAccount: (req, res) => {},

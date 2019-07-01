@@ -2,8 +2,7 @@ INSERT INTO transactions ( amount, recipient_id, sender_id, trans_date)
 VALUES ($1, $2, $3, now());
 UPDATE paypal_users
 SET balance = balance + $1
-WHERE id = $2
-RETURNING *;
+WHERE id = $2;
 UPDATE paypal_users
 SET balance = balance - $1
 WHERE id = $3

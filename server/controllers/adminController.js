@@ -17,7 +17,7 @@ module.exports = {
         return res.status(200).send(deletedTransaction)
     },
     updateBalance: async (req, res) =>{
-        console.log(req.body)
+        // console.log(req.body)
         const db = req.app.get('db')
         const {balance} = req.body
         const updatedBalance = await db.setBalance(balance)

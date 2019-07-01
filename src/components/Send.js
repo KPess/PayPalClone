@@ -3,11 +3,10 @@
 //Add a success message when transaction goes through
 //Redirect to dashboard?
 
-
 import HeaderNav from "./Nav";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { setBalance } from "../redux/reducer";
+import { setUser } from "../redux/reducer";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import React from "react";
 import Axios from "axios";
@@ -24,7 +23,6 @@ class Send extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    // console.log(this.state);
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -34,24 +32,21 @@ class Send extends React.Component {
       userid: this.props.user.id
     })
       .then(response => {
-        // this.props.setUsername(response.data.username);
-        this.props.setBalance(response.data[0].balance);
-        
-        // console.log(response)
-        // this.props.setUser(response.data);
-        // this.setState({ redirect: true });
+        // console.log(response.data)
+        this.props.setUser(response.data[0]);
+        alert(`Transaction successful`);
       })
       .catch(error => {
-        this.setState({ error: error.response.data.error });
+        // console.log(error)
+        this.setState({ error: error });
       });
-    // console.log(this.state, this.props);
   };
 
   render() {
-    const {user} = this.props
-      if (!user.username) {
-        return <Redirect to="/" />;
-      }
+    const { user } = this.props;
+    if (!user.username) {
+      return <Redirect to="/" />;
+    }
     return (
       <div>
         <HeaderNav />
@@ -79,7 +74,7 @@ class Send extends React.Component {
             <Input
               required
               onChange={this.handleChange}
-              max={this.props.balance}
+              max={user.balance}
               min="5"
               type="number"
               name="sendAmount"
@@ -101,5 +96,5 @@ const mapStateToProps = reduxState => {
 
 export default connect(
   mapStateToProps,
-  { setBalance }
+  { setUser }
 )(Send); //connect invoked returns a function, and then passes in register
