@@ -8,11 +8,13 @@ class AllTransTable extends React.Component {
   handleDelete = trans_id => {
     Axios.delete(`/transactions/${trans_id}`).then(() =>
       this.getAllTransactions()
-    );
+    )
   };
   getAllTransactions = e => {
     Axios.get("/transactions").then(response => {
       this.props.getTransactions(response.data);
+    }).catch(error => {
+      console.log('Request failed', error)
     });
   };
   

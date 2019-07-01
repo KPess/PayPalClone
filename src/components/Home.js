@@ -20,7 +20,7 @@ class Home extends React.Component {
     return (
       <div className="Home">
         <HeaderNav />
-        <h1> Welcome to PayPal</h1>
+        <h1> With PayPal, you can pay your way.</h1>
         <div>
           {user.username ? (
             <div>

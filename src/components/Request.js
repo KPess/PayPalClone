@@ -23,24 +23,26 @@ class Request extends React.Component {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const message = document.getElementById("message").value;
-    axios.post('/send', {
-      name: name,
-      email: email,
-      message: message
-    }).then(response => {
-      if (response.data.msg === "success") {
-        alert("Message Sent.");
-        this.resetForm();
-      } else if (response.data.msg === "fail") {
-        alert("Message failed to send.");
-      }
-    });
+    axios
+      .post("/send", {
+        name: name,
+        email: email,
+        message: message
+      })
+      .then(response => {
+        if (response.data.msg === "success") {
+          alert("Message Sent.");
+          this.resetForm();
+        } else if (response.data.msg === "fail") {
+          alert("Message failed to send.");
+        }
+      });
   }
   render() {
-    const {user} = this.props
-        if (!user.username) {
-          return <Redirect to="/" />;
-        }
+    const { user } = this.props;
+    if (!user.username) {
+      return <Redirect to="/" />;
+    }
     return (
       <div>
         <HeaderNav />
@@ -54,7 +56,12 @@ class Request extends React.Component {
         >
           <div className="form-group">
             <label for="name">Your Name</label>
-            <input type="text" className="form-control" id="name" placeholder="Your Name"/>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              placeholder="Your Name"
+            />
           </div>
           <div className="form-group">
             <label for="exampleInputEmail1">Send to this email address</label>
@@ -68,11 +75,14 @@ class Request extends React.Component {
           </div>
           <div className="form-group">
             <label for="message">Message</label>
-            <textarea 
-              placeholder={`Hi USER, please send me $50 on PayPalClone. My user ID is ${user.id}`}
-              className="form-control" 
-              rows="5" 
-              id="message" />
+            <textarea
+              placeholder={`Hi USER, please send me $50 on PayPalClone. My user ID is ${
+                user.id
+              }`}
+              className="form-control"
+              rows="5"
+              id="message"
+            />
           </div>
           <button type="submit" className="btn btn-primary">
             Submit

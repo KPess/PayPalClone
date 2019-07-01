@@ -2,7 +2,7 @@ import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css";
 import ReactDOM from "react-dom";
 
 toast.configure();
@@ -10,15 +10,12 @@ toast.configure();
 export default function CheckoutForm() {
   const [product] = React.useState({
     name: "Donate $100",
-    price: 100.00,
+    price: 100.0,
     description: "Donate"
   });
 
   async function handleToken(token, addresses) {
-    const response = await axios.post(
-      "/checkout",
-      { token, product }
-    );
+    const response = await axios.post("/checkout", { token, product });
     const { status } = response.data;
     console.log("Response:", response.data);
     if (status === "success") {
