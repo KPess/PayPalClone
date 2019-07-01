@@ -127,7 +127,7 @@ module.exports = {
       }
     }
     else {
-      res.status(401).json(`Bacon`)
+      res.status(401).json(`Please log in`)
     }
   }
 };

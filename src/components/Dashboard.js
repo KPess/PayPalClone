@@ -91,7 +91,14 @@ const mapStateToProps = reduxState => {
     rcvdTransactions,
     balance
   } = reduxState;
-  return { user, isadmin, transactions, sentTransactions, rcvdTransactions, balance };
+  return {
+    user,
+    isadmin,
+    transactions,
+    sentTransactions,
+    rcvdTransactions,
+    balance
+  };
 };
 
 export default connect(

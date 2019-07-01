@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Axios from "axios";
 import { Button } from "reactstrap";
-import { setBalance } from "../redux/reducer";
+import { setUser } from "../redux/reducer";
 
 class UpdateBalance extends React.Component {
   constructor(props) {
@@ -31,15 +31,16 @@ class UpdateBalance extends React.Component {
       balance: this.state.newBalance
     })
       .then(response => {
-        //   console.log(response.data) Gives an array with single object
-        this.props.setBalance(response.data[0].balance);
+          console.log(response.data)
+        this.props.setUser(response.data[0])
       })
       .catch(error => {
         this.setState({ error: error });
       });
   };
 
-  render(props) {
+  render() {
+    console.log(this.props.user)
     return (
       <div>
         <input
@@ -59,5 +60,5 @@ const mapStateToProps = reduxState => {
 
 export default connect(
   mapStateToProps,
-  { setBalance }
+  { setUser }
 )(UpdateBalance);
