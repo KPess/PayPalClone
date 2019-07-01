@@ -10,6 +10,7 @@ import { setUser } from "../redux/reducer";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import React from "react";
 import Axios from "axios";
+import hypepotamus from '../hypepotamus.jpg'
 
 class Send extends React.Component {
   constructor(props) {
@@ -52,10 +53,12 @@ class Send extends React.Component {
         <HeaderNav />
         <h1>Welcome {user.username}! </h1>
         <h2>Your balance is: $‎{user.balance}</h2>
+        <div><img src={hypepotamus} alt="hypepotamus"/></div>
         <Form id="sendForm">
           <FormGroup>
             <Label for="recipID">
               <h2>Send money to another user</h2>
+              
             </Label>
           </FormGroup>
           <FormGroup>

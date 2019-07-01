@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { setBalance } from "../redux/reducer";
 import React from "react";
 import axios from "axios";
+import moneypls from '../moneypls.gif'
 
 class Request extends React.Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class Request extends React.Component {
         <HeaderNav />
         <h1>Welcome {user.username}! </h1>
         <h2>Your balance is: $‎{user.balance}</h2>
+        <img src={moneypls} alt="Pay me."/>
         <h3>Use the form below to request money!</h3>
         <form
           id="contact-form"

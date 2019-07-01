@@ -4,12 +4,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactDOM from "react-dom";
+import burning from "../burning.gif"
 
 toast.configure();
 
 export default function CheckoutForm() {
   const [product] = React.useState({
-    name: "Donate $100",
+    name: "Donate today!",
     price: 100.0,
     description: "Donate"
   });
@@ -29,7 +30,8 @@ export default function CheckoutForm() {
     <div className="container">
       <div className="product">
         <h1>{product.name}</h1>
-        <h3>${product.price}</h3>
+        <div><img src={burning} alt="burning money"/></div>
+      <h3>${product.price}</h3>
       </div>
       <StripeCheckout
         stripeKey="pk_test_2QtpeVuM2hru92q1zHxaZQFK002dx0OCJ1"
@@ -38,7 +40,7 @@ export default function CheckoutForm() {
         name="Deposit"
         billingAddress
         shippingAddress
-      />
+        />
     </div>
   );
 }

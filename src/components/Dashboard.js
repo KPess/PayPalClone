@@ -13,6 +13,7 @@ import AllTransTable from "./AllTransTable";
 import UserRcvdTable from "./UserRcvdTable";
 import UserSentTable from "./UserSentTable";
 import UpdateBalance from "./UpdateBalance";
+import counting from "../counting.gif"
 
 class Dashboard extends React.Component {
   state = {
@@ -65,7 +66,7 @@ class Dashboard extends React.Component {
         <HeaderNav />
         <h1>Welcome {user.username}! </h1>
         <h2>Your balance is: $‎{user.balance}</h2>
-
+        <div><img src={counting} alt="counting gif"/></div>
         {user.isadmin ? (
           <h2>
             <UpdateBalance />
