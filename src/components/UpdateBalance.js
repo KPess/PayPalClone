@@ -31,7 +31,7 @@ class UpdateBalance extends React.Component {
       balance: this.state.newBalance
     })
       .then(response => {
-          console.log(response.data)
+          // console.log(response.data)
         this.props.setUser(response.data[0])
       })
       .catch(error => {
@@ -40,7 +40,7 @@ class UpdateBalance extends React.Component {
   };
 
   render() {
-    console.log(this.props.user)
+    // console.log(this.props.user)
     return (
       <div>
         <input
