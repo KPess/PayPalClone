@@ -36,8 +36,8 @@ class AllTransTable extends React.Component {
           </thead>
           <tbody>
             {this.props.transactions.map((transaction, index) => {
-              var date = transaction.trans_date
-              var shortdate = date.slice(0,10)
+              var date = transaction.trans_date;
+              var shortdate = date.slice(0, 10);
               return [
                 <tr key={index}>
                   <th scope="transaction">{transaction.trans_id}</th>

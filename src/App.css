@@ -55,12 +55,13 @@ body {
   padding: 0;
   border-collapse: collapse;
   border-spacing: 0;
+  text-align: left;
 }
 .responsive-table thead {
   visibility: hidden;
   background: #fafafa;
 }
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 400px) {
   .responsive-table thead {
     visibility: visible;
   }
@@ -72,7 +73,7 @@ body {
   margin-bottom: 10px;
   display: block;
 }
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 400px) {
   .responsive-table tr {
     display: table-row;
     border-bottom-width: 1px;
@@ -93,14 +94,14 @@ body {
 }
 .responsive-table td {
   display: block;
-  text-align: right;
+  text-align: left;
   font-size: 13px;
   border-bottom: 1px dotted #ddd;
 }
 .responsive-table td:last-child {
   border-bottom: none;
 }
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 400px) {
   .responsive-table td {
     display: table-cell;
     text-align: left;
@@ -114,7 +115,7 @@ body {
   text-transform: uppercase;
   font-weight: bold;
 }
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 400px) {
   .responsive-table td:before {
     content: "";
     display: none;
