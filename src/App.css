@@ -121,3 +121,8 @@ body {
     display: none;
   }
 }
+
+.Home{
+  height: 100vh;
+  background-image: homebackground;
+}

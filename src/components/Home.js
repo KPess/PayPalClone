@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import {resetReduxState} from '../redux/reducer'
 import {Button} from 'reactstrap'
 import Axios from 'axios'
+import homebackground from '../homebackground.jpg'
 
 class Home extends React.Component {
 
@@ -21,6 +22,7 @@ class Home extends React.Component {
       <div className="Home">
         <HeaderNav />
         <h1> With PayPal, you can pay your way.</h1>
+        <div><img src={homebackground} alt="homebackground"/></div>
         <div>
           {user.username ? (
             <div>

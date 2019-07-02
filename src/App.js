@@ -5,6 +5,7 @@ import routes from "./routes";
 import store from "./redux/store";
 import "./App.css";
 import { StripeProvider } from "react-stripe-elements";
+import footer from './footer.jpg'
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
 		  	{routes}
 		  	
 		  </div>
+      
+      {/* <footer><img style={{width: '100vw'}}src={footer} alt="footer"/></footer> */}
         </HashRouter>
       </Provider>
     </StripeProvider>
