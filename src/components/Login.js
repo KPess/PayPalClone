@@ -64,10 +64,10 @@ export class Login extends Component {
         <HeaderNav/>
         <h1>Log in</h1>
         <h3>{this.state.error}</h3>
-        <form>
-        <input required placeholder="Username" name="username" onChange={this.handleChange} />
-        <input required placeholder="Password" name="password" type="password" onChange={this.handleChange} />
-        <Button onClick={this.handleClick}>Submit</Button>
+        <form id="register-form">
+        <input style={{margin: '.25em'}} required placeholder="Username" name="username" onChange={this.handleChange} />
+        <input style={{margin: '.25em'}} required placeholder="Password" name="password" type="password" onChange={this.handleChange} />
+        <div style={{margin: '2em'}}><Button onClick={this.handleClick}>Submit</Button></div>
         </form>
       </div>
     );

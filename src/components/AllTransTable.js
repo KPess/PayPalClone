@@ -1,34 +1,30 @@
 import React from "react";
 import { Table, Button } from "reactstrap";
 import { connect } from "react-redux";
-import {getTransactions} from '../redux/reducer';
+import { getTransactions } from "../redux/reducer";
 import Axios from "axios";
 
 class AllTransTable extends React.Component {
   handleDelete = trans_id => {
     Axios.delete(`/transactions/${trans_id}`).then(() =>
       this.getAllTransactions()
-    )
+    );
   };
   getAllTransactions = e => {
-    Axios.get("/transactions").then(response => {
-      this.props.getTransactions(response.data);
-    }).catch(error => {
-      console.log('Request failed', error)
-    });
+    Axios.get("/transactions")
+      .then(response => {
+        this.props.getTransactions(response.data);
+      })
+      .catch(error => {
+        console.log("Request failed", error);
+      });
   };
-  
-
-  // Delete ERROR:
-  // Page does not update with refreshed transaction
-  // list on admin dashboard when a transaction is deleted.
 
   render(props) {
-    // console.log(this.props.transactions);
     return (
-      <div>
+      <div id="table_container">
         <h1>All Transactions</h1>
-        <Table hover>
+        <Table hover className="responsive-table">
           <thead>
             <tr>
               <th>Transaction #</th>
@@ -40,12 +36,14 @@ class AllTransTable extends React.Component {
           </thead>
           <tbody>
             {this.props.transactions.map((transaction, index) => {
+              var date = transaction.trans_date
+              var shortdate = date.slice(0,10)
               return [
                 <tr key={index}>
                   <th scope="transaction">{transaction.trans_id}</th>
                   <td>{transaction.username}</td>
                   <td>${transaction.amount}</td>
-                  <td>{transaction.trans_date}</td>
+                  <td>{shortdate}</td>
                   <td>
                     <Button
                       className="delete-trans"
@@ -68,4 +66,7 @@ const mapStateToProps = reduxState => {
   return reduxState;
 };
 
-export default connect(mapStateToProps, {getTransactions})(AllTransTable);
+export default connect(
+  mapStateToProps,
+  { getTransactions }
+)(AllTransTable);

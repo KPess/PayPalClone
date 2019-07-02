@@ -96,19 +96,19 @@ class Register extends Component {
         <HeaderNav/>
         <h1>Register Today!</h1>
         <h3>{this.state.error}</h3>
-        <form>
-        <input required placeholder="Username" name="username" onChange={this.handleChange} />
-        <input required placeholder="Password" name="password" type="password" onChange={this.handleChange} />
-        <input required placeholder="Email" name="email" onChange={this.handleChange} />
-        <input required placeholder="First Name" name="firstName"onChange={this.handleChange} />
-        <input required placeholder="Last Name" name="lastName" onChange={this.handleChange} />
-        <select required id="currencyDropdown" name="preferredCurrency" onChange={this.handleDropdownChange}>
+        <form id="register-form">
+        <input style={{margin: '.25em'}} required placeholder="Username" name="username" onChange={this.handleChange} />
+        <input style={{margin: '.25em'}}required placeholder="Password" name="password" type="password" onChange={this.handleChange} />
+        <input style={{margin: '.25em'}}required placeholder="Email" name="email" onChange={this.handleChange} />
+        <input style={{margin: '.25em'}}required placeholder="First Name" name="firstName"onChange={this.handleChange} />
+        <input style={{margin: '.25em'}}required placeholder="Last Name" name="lastName" onChange={this.handleChange} />
+        {/* <select required id="currencyDropdown" name="preferredCurrency" onChange={this.handleDropdownChange}>
             <option value="" disabled selected hidden>Select your preferred currency</option>
             <option>USD</option>
             <option>Euros</option>
             <option>Canuck Bucks</option>
-        </select>
-        <Button onClick={this.handleClick}>Submit</Button>
+        </select> */}
+        <Button style={{margin: '2em'}} onClick={this.handleClick}>Submit</Button>
         </form>
       </div>
     );

@@ -47,8 +47,9 @@ class UpdateBalance extends React.Component {
           name="newBalance"
           placeholder="New Balance"
           onChange={this.handleChange}
+          style={{width: '60vw'}}
         />
-        <Button onClick={this.handleClick}>Update Balance</Button>
+        <div><Button onClick={this.handleClick}>Update Balance</Button></div>
       </div>
     );
   }
