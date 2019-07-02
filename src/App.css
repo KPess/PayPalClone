@@ -35,3 +35,8 @@
   align-content: center;
   max-width: 50vmin;
 }
+
+img{
+  width: 60%;
+  height: auto;
+}

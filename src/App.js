@@ -5,7 +5,6 @@ import routes from "./routes";
 import store from "./redux/store";
 import "./App.css";
 import { StripeProvider } from "react-stripe-elements";
-import CheckoutForm from "./components/CheckoutForm";
 
 function App() {
   return (
