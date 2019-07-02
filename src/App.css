@@ -23,6 +23,8 @@
   align-content: center;
   max-width: 50vmin;
   margin: 2em;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 #sendForm {
@@ -39,15 +41,18 @@
   justify-content: space-around;
   align-content: center;
   max-width: 50vmin;
+  height: 40vh;
 }
 
 img{
-  width: 40%;
+  width: 30%;
   height: auto;
 }
 
 body {
   font-family: "Gotham";
+  margin-bottom: 0;
+  padding: 0;
 }
 .responsive-table {
   width: 100%;
@@ -123,6 +128,5 @@ body {
 }
 
 .Home{
-  height: 100vh;
-  background-image: homebackground;
+  min-height: 100vh;
 }

@@ -27,7 +27,7 @@ export default function CheckoutForm() {
   }
 
   return (
-    <div className="container">
+    <div className="Home container">
       <div className="product">
         <h1>{product.name}</h1>
         <div><img src={burning} alt="burning money"/></div>

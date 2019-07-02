@@ -45,7 +45,7 @@ class Request extends React.Component {
       return <Redirect to="/" />;
     }
     return (
-      <div>
+      <div className="Home">
         <HeaderNav />
         <h1>Welcome {user.username}! </h1>
         <h2>Your balance is: $‎{user.balance}</h2>

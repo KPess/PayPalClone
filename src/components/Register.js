@@ -92,7 +92,7 @@ class Register extends Component {
 
     
     return (
-      <div>
+      <div className="Home">
         <HeaderNav/>
         <h1>Register Today!</h1>
         <h3>{this.state.error}</h3>

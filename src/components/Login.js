@@ -60,7 +60,7 @@ export class Login extends Component {
     }
 
     return (
-      <div>
+      <div className="Home">
         <HeaderNav/>
         <h1>Log in</h1>
         <h3>{this.state.error}</h3>

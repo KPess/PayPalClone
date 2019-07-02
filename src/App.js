@@ -5,19 +5,14 @@ import routes from "./routes";
 import store from "./redux/store";
 import "./App.css";
 import { StripeProvider } from "react-stripe-elements";
-import footer from './footer.jpg'
+import footer from "./footer.jpg";
 
 function App() {
   return (
     <StripeProvider apiKey="pk_test_2QtpeVuM2hru92q1zHxaZQFK002dx0OCJ1">
       <Provider store={store}>
         <HashRouter>
-		  <div className="App">
-		  	{routes}
-		  	
-		  </div>
-      
-      {/* <footer><img style={{width: '100vw'}}src={footer} alt="footer"/></footer> */}
+          <div className="App">{routes}</div>
         </HashRouter>
       </Provider>
     </StripeProvider>
