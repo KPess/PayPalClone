@@ -1,0 +1,36 @@
+.HomeContainer{
+    background: url('../homebackground.jpg');
+    background-repeat: no-repeat;
+    background-position: top; 
+    position: top;
+    margin-top: -5em;
+    background-size: 100%;
+    height: 100vh;
+    color: white;
+    padding: 5em;
+    align-items: center;
+    /* border: red solid; */
+    font-size: 3vw;
+}
+
+
+
+.HomeSpan {
+    border: gainsboro 1px solid !important;
+    border-radius: .25em;
+    margin-top: 5vh;
+}
+/* .logout-button{
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+    margin-left: 1em;
+} */
+
+@media only screen and (max-width: 600px) {
+    .HomeContainer {background-size: 300%;}
+}
+
+#signuplink:hover, #loginlink:hover{
+    color: white;
+
+}

@@ -1,6 +1,6 @@
 
 .App {
-  background: steelblue;
+  background: FFFFFF;
   text-align: center;
   font-family: pp-sans-big-light, "Helvetica Neue", Arial, sans-serif;
 }
@@ -22,9 +22,12 @@
   justify-content: space-around;
   align-content: center;
   max-width: 50vmin;
-  margin: 2em;
+  margin: 1em;
+  margin-top: 5em;
   margin-bottom: 0;
   padding-bottom: 0;
+  border: gainsboro 1px solid !important;
+  border-radius: .25em;
 }
 
 #sendForm {
@@ -40,8 +43,25 @@
   flex-direction: column;
   justify-content: space-around;
   align-content: center;
-  max-width: 50vmin;
+  width: 40vw;
   height: 40vh;
+}
+
+#login-form {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  width: 60vw;
+  max-width: 400px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
+  border: gainsboro 1px solid !important;
+  border-radius: .25em;
+  color: white;
 }
 
 img{
@@ -53,6 +73,7 @@ body {
   font-family: "Gotham";
   margin-bottom: 0;
   padding: 0;
+  background: #2270BA;
 }
 .responsive-table {
   width: 100%;
@@ -129,4 +150,40 @@ body {
 
 .Home{
   min-height: 100vh;
+}
+
+.logout-button{
+  padding-left: 2vw;
+  padding-right: 2vw;
+  margin-left: .5em;
+}
+
+.login-button{
+  padding-left: 2vw;
+
+}
+
+#nav-login-button {
+  margin-left: .5em;
+}
+.HomeHeader .bg-dark{
+  background-color: rgba(0, 0, 0, 0) !important;
+  color: blue;
+}
+
+#navbar1{
+  display: flex;
+  justify-items: space-around !important;
+}
+
+li.nav-item{
+  padding: 1vh;
+}
+
+.navbar-collapse{
+  margin-right: 15vw;
+}
+
+.navbar-brand{
+  margin-left: 15vw;
 }

@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import { Redirect } from 'react-router-dom';
-import { setUsername, setBalance, setUser, getTransactions } from '../redux/reducer';
-import {connect} from 'react-redux'
-import {Button} from 'reactstrap'
-import HeaderNav from './Nav'
+import { Redirect } from "react-router-dom";
+import {
+  setUsername,
+  setBalance,
+  setUser,
+  getTransactions
+} from "../redux/reducer";
+import { connect } from "react-redux";
+import { Button } from "reactstrap";
+import HeaderNav from "./Nav";
+import "./Login.css";
 
 export class Login extends Component {
   constructor() {
@@ -17,7 +23,7 @@ export class Login extends Component {
       transactions: []
     };
   }
-  
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -29,58 +35,80 @@ export class Login extends Component {
     // console.log(e.target.value)
   };
 
-  handleClick = (e) => {
-    e.preventDefault()
-    const {username, password} = this.state
-    // Prevent default prevents the page from re-rendering 
-    // when the submit button is PermissionRequestedEvent, 
+  handleClick = e => {
+    e.preventDefault();
+    const { username, password } = this.state;
+    // Prevent default prevents the page from re-rendering
+    // when the submit button is PermissionRequestedEvent,
     // which was breaking stuff.
-    Axios.post('/auth/login/user', {
+    Axios.post("/auth/login/user", {
       username,
       password
-    }).then( response => {
-          this.props.setUsername(response.data.username);
-          this.props.setBalance(response.data.balance);
-          this.props.setUser(response.data);
-          // this.props.getTransactions(response.transactions.data);
-          // console.log(response)
-          this.setState({redirect: true});
-
-    }).catch( error => {
-        this.setState({error: error.response.data.error});
     })
-}
-
-
+      .then(response => {
+        this.props.setUsername(response.data.username);
+        this.props.setBalance(response.data.balance);
+        this.props.setUser(response.data);
+        // this.props.getTransactions(response.transactions.data);
+        // console.log(response)
+        this.setState({ redirect: true });
+      })
+      .catch(error => {
+        this.setState({ error: error.response.data.error });
+      });
+  };
 
   render() {
-
-    if(this.state.redirect === true) {
-        return <Redirect to='/dashboard' />
+    if (this.state.redirect === true) {
+      return <Redirect to="/dashboard" />;
     }
 
     return (
       <div className="Home">
-        <HeaderNav/>
-        <h1>Log in</h1>
-        <h3>{this.state.error}</h3>
-        <form id="register-form">
-        <input style={{margin: '.25em'}} required placeholder="Username" name="username" onChange={this.handleChange} />
-        <input style={{margin: '.25em'}} required placeholder="Password" name="password" type="password" onChange={this.handleChange} />
-        <div style={{margin: '2em'}}><Button onClick={this.handleClick}>Submit</Button></div>
-        </form>
+        <HeaderNav />
+        <div className="LoginContainer">
+          <h3>{this.state.error}</h3>
+          <form id="login-form">
+          <h4>PayPal</h4>
+            <input
+              style={{ margin: ".25em" }}
+              required
+              placeholder="Username"
+              name="username"
+              className="UsernameInput"
+              onChange={this.handleChange}
+            />
+            <br></br>
+            <input
+              style={{ margin: ".25em" }}
+              required
+              placeholder="Password"
+              name="password"
+              className="PasswordInput"
+              type="password"
+              onChange={this.handleChange}
+            />
+            <div style={{ margin: "2em" }}>
+              <Button className="LoginButton" onClick={this.handleClick}>Log In</Button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => { //Takes in Redux state
-    return {
-        username: state.username, //Maps certain parts of state to props. The key name can be changed and passed as a prop with that name
-        balance: state.balance, // Prop name on the left, prop value on the right
-        isAdmin: state.isAdmin,
-        transactions: state.transactions
-    }
-}
+const mapStateToProps = state => {
+  //Takes in Redux state
+  return {
+    username: state.username, //Maps certain parts of state to props. The key name can be changed and passed as a prop with that name
+    balance: state.balance, // Prop name on the left, prop value on the right
+    isAdmin: state.isAdmin,
+    transactions: state.transactions
+  };
+};
 
-export default connect(mapStateToProps, {setUsername, setBalance, setUser, getTransactions})(Login); //connect invoked returns a function, and then passes in register
+export default connect(
+  mapStateToProps,
+  { setUsername, setBalance, setUser, getTransactions }
+)(Login); //connect invoked returns a function, and then passes in register

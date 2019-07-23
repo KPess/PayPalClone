@@ -1,0 +1,36 @@
+#register-form {
+    border: gainsboro 1px solid !important;
+    border-radius: .25em;
+    margin: 10vw;
+    padding: 1em;
+    min-width: 50vw;
+    color: white;
+}
+
+
+
+.SubmitButton{
+    border: #EAECED 1px solid;
+    /* border-radius: .25em; */
+    background-color: #2270BA !important;
+    /* width: 50%; */
+    /* height: 3em; */
+    padding: 1em !important;
+    margin: 1em;
+
+}
+
+.UsernameInput {
+    border-radius: .25em !important;
+    /* margin: 10px !important; */
+    padding-left: 0;
+    width: 48%;
+    height: 2.5em;
+}
+
+.PasswordInput {
+    border-radius: .25em;
+    width: 48%;
+    height: 2.5em;
+
+}

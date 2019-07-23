@@ -16,6 +16,7 @@ import {
   DropdownItem
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import './Nav.css'
 
 class HeaderNav extends React.Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class HeaderNav extends React.Component {
   render() {
     return (
       <div>
-        <Navbar id="navbar" color="light" light expand="md">
+        <Navbar id="navbar1" color="dark" dark expand="md">
           <NavbarBrand href="/#/">PayPal</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -75,7 +76,8 @@ class HeaderNav extends React.Component {
               {!this.props.user.username ? (
                 <NavItem>
                   <Link to="/login">
-                    <Button>Log In</Button>
+                    <Button
+                    id="nav-login-button">Log In</Button>
                   </Link>
                 </NavItem>
               ) : (

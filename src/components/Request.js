@@ -5,6 +5,7 @@ import { setBalance } from "../redux/reducer";
 import React from "react";
 import axios from "axios";
 import moneypls from '../moneypls.gif'
+import './Request.css'
 
 class Request extends React.Component {
   constructor(props) {
@@ -51,6 +52,7 @@ class Request extends React.Component {
         <h2>Your balance is: $‎{user.balance}</h2>
         <img src={moneypls} alt="Pay me."/>
         <h3>Use the form below to request money!</h3>
+        <div class="request-form">
         <form
           id="contact-form"
           onSubmit={this.handleSubmit.bind(this)}
@@ -89,7 +91,7 @@ class Request extends React.Component {
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
-        </form>
+        </form></div>
       </div>
     );
   }
