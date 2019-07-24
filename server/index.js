@@ -144,5 +144,5 @@ app.post("/checkout", async (req, res) => {
     res.sendFile(path.join(__dirname, "../build/index.html"));
   });
   
-  app.listen(5050, () => console.log(`Listening on Port 5050`));
+  app.listen(process.env.SERVER_PORT, () => console.log(`Listening on Port ${process.env.CONNECTION_STRING}`));
   
